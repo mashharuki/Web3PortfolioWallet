@@ -78,50 +78,6 @@ app.post('/api/mintToken', async(req, res) => {
 });
     
 /**
- * Tokenを償却するAPI
- * @param to 償却アドレス
- * @param amount 償却量
- * @param walletAddr ウォレットアドレス
- */
-app.post('/api/burnToken', async(req, res) => {
-  logger.log("償却用のAPI開始")
-
-  var to = req.query.to;
-  var amount = req.query.amount;
-  var walletAddr = req.query.walletAddr;
-
-  // call send Tx function
-  var result = await sendTx(
-    MyTokenABI, 
-    contractAddr.MYTOKEN_ADDRESS, 
-    "burnToken", 
-    [to, (amount/1000000000000000000)], 
-    RPC_URL, 
-    CHAIN_ID
-  );
-    
-  if(result == true) {
-    // send ETH 
-    var result = await sendEth(
-      walletAddr, 
-      (amount/10000000000000000000000), 
-      RPC_URL, 
-      CHAIN_ID
-    );
-
-    logger.debug("トランザクション送信成功");
-    logger.log("償却用のAPI終了")
-    res.set({ 'Access-Control-Allow-Origin': '*' });
-    res.json({ result: 'success' });
-  } else {
-    logger.error("トランザクション送信失敗");
-    logger.log("償却用のAPI終了")
-    res.set({ 'Access-Control-Allow-Origin': '*' });
-    res.json({ result: 'fail' });
-  }
-});
-    
-/**
  * Tokenの残高を取得するAPI
  * @param addr 残高を取得するアドレス
  */
@@ -189,16 +145,16 @@ app.post('/api/send', async(req, res) => {
     // create mytoken contract 
     var myTokenContract = new ethers.Contract(contractAddr.MYTOKEN_ADDRESS, MyTokenABI, signer);
     // create factory contract
-    var factoryContract = new ethers.Contract(contractAddr.FACTORY_ADDRESS, FactoryABI, signer);
+    var dnsContract = new ethers.Contract(contractAddr.DNS_ADDRESS, DNSABI, signer);
     // get address from did
-    let fromAddr = await factoryContract.callStatic.addrs(from);
-    let receiveAddr = await factoryContract.callStatic.addrs(to);
+    let fromAddr = await dnsContract.callStatic.addrs(from);
+    let receiveAddr = await dnsContract.callStatic.addrs(to);
     // get addr from did
     const balance = await myTokenContract.callStatic.balanceOf(fromAddr);
   
     logger.log("fromAddr:", fromAddr);
     logger.log("receiveAddr:", receiveAddr);
-    logger.log("送信元のbalance:", Number(balance._hex));
+    logger.log("balance of fromAddr:", Number(balance._hex));
     
     // check balance
     if(Number(balance._hex) >= amount) {
@@ -247,15 +203,51 @@ app.post('/api/send', async(req, res) => {
     res.json({ result: 'fail' });
   }
 });
+
+/**
+ * update score API
+ * @param addr
+ * @param point
+ */
+app.post("/api/updateScore", async (req, res) => {
+  logger.debug("update score API start");
+
+  var addr = req.query.addr;
+  var point = req.query.point;
+
+  // call send Tx function
+  var result = await sendTx(
+    MyTokenABI, 
+    contractAddr.MYTOKEN_ADDRESS, 
+    "updateScore", 
+    [addr, point], 
+    RPC_URL, 
+    CHAIN_ID
+  );
+    
+  if(result == true) {
+    logger.debug("transaction success!!");
+    logger.log("update score API end");
+    res.set({ 'Access-Control-Allow-Origin': '*' });
+    res.json({ result: 'success' });
+  } else {
+    logger.error("transaction fail");
+    logger.log("update score API end");
+    res.set({ 'Access-Control-Allow-Origin': '*' });
+    res.json({ result: 'fail' });
+  }
+});
     
 /**
- * DIDを作成するAPI
- * @param addr 登録するアドレス
+ * Create did API
+ * @param addr 
+ * @param name
  */
 app.post('/api/create', async(req, res) => {
   logger.log("DID作成用のAPI開始");
 
   var addr = req.query.addr;
+  var name = req.query.name;
 
   // generate DID document
   let {
@@ -272,10 +264,10 @@ app.post('/api/create', async(req, res) => {
   try {
     // set to Factory contract
     var result = await sendTx(
-      FactoryABI, 
-      contractAddr.FACTORY_ADDRESS, 
+      DNSABI, 
+      contractAddr.DNS_ADDRESS, 
       "register", 
-      [addr, didUrl], 
+      [name, didUrl, addr], 
       RPC_URL, 
       CHAIN_ID
     );
@@ -301,20 +293,51 @@ app.post('/api/create', async(req, res) => {
   }
 });
     
-    
 /**
- * DIDドキュメントを検索するAPI
+ * update Verifiable Credentials API
+ * @param did
+ * @param name
+ * @param cid
  */
-app.get('/api/resolve', async(req, res) => {
-  var uri = req.query.uri;
-  // resolve
-  const response = await ION.resolve(uri);
-  logger.log("response:", response);
+app.post('/api/updateVc', async(req, res) => {
+  logger.log("updateVc API start");
 
-  res.set({ 'Access-Control-Allow-Origin': '*' });
-  res.json({ result : response });
+  var did = req.query.did;
+  var name = req.query.name;
+  var cid = req.query.cid;
+
+  try {
+    // set to Factory contract
+    var result = await sendTx(
+      DNSABI, 
+      contractAddr.DNS_ADDRESS, 
+      "updateVc", 
+      [did, name, cid], 
+      RPC_URL, 
+      CHAIN_ID
+    );
+
+    if(result == true) {
+      logger.debug("trasaction success!!");
+      logger.log("updateVc API end");
+      logger.log("DID:", did);
+      logger.log("CID:", cid);
+      res.set({ 'Access-Control-Allow-Origin': '*' });
+      res.json({ result: 'success' });
+    } else {
+      logger.error("trasaction fail");
+      logger.log("updateVc API end");
+      res.set({ 'Access-Control-Allow-Origin': '*' });
+      res.json({ result: 'fail' });
+    }
+  } catch(err) {
+    logger.error("trasaction fail");
+    logger.error("エラー詳細：", err);
+    logger.log("updateVc API end");
+    res.set({ 'Access-Control-Allow-Origin': '*' });
+    res.json({ result: 'fail' });
+  }
 });
-    
 
 /**
  * stripe Payment element API
@@ -370,7 +393,7 @@ app.post("/api/registerIpfs", async (req, res) => {
     res.set({ 'Access-Control-Allow-Origin': '*' });
     res.json({ result: 'success' });
   } else {
-    logger.error("トランザクション送信失敗");
+    logger.error("trasaction fail");
     logger.log("Register Ipfs API終了")
     res.set({ 'Access-Control-Allow-Origin': '*' });
     res.json({ result: 'fail' });
