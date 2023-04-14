@@ -34,7 +34,8 @@ contract DNS is ERC721URIStorage, IDNS {
     mapping(string => VcInfo[]) public vcs;
 
     // event
-    event Registered(address to, string did, string name);
+    event DNSCreated(string name, string symbol, address owner);
+    event Registered(address to, string did, string name, bool isRegistered);
     event UpdateVc(string did, string name, string cid);
     event OwnershipTransferred(
         address indexed previousOwner,
@@ -54,6 +55,7 @@ contract DNS is ERC721URIStorage, IDNS {
         owner = payable(msg.sender);
 
         console.log("owner:", owner);
+        emit DNSCreated("DID Name Service", "DNS", owner);
     }
 
     /**
@@ -113,7 +115,7 @@ contract DNS is ERC721URIStorage, IDNS {
         _setTokenURI(newRecordId, finalTokenUri);
 
         _tokenIds.increment();
-        emit Registered(to, did, name);
+        emit Registered(to, did, name, isRegistered[to]);
     }
 
     /**

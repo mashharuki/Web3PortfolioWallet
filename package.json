@@ -20,6 +20,4 @@
     "start:api": "yarn workspace api start",
     "convert": "yarn workspace vcScripts convert"
   }
-
-
 }

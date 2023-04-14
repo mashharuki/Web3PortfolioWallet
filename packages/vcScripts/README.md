@@ -182,7 +182,3 @@ yarn issue:vc
   }
 }
 ```
-
-## VC 発行の想定フロー
-
-<img src="./assets/other-img/flow.png">
