@@ -1,0 +1,11 @@
+{
+  "fuji": {
+    "MyToken": {
+      "address": "0xFF6E94b43b6c52f64eDb32926ad64a59039e8353",
+      "startBlock": 20931587
+    },
+    "DNS": {
+      "address": "0x8eD85ab44b29286D878492da06c862770A078176"
+    }
+  }
+}

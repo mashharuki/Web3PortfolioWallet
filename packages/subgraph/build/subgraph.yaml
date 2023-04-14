@@ -1,0 +1,89 @@
+specVersion: 0.0.5
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: MyToken
+    network: fuji
+    source:
+      address: "0xFF6E94b43b6c52f64eDb32926ad64a59039e8353"
+      abi: MyToken
+      startBlock: 20931587
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - DelegateChanged
+        - DelegateVotesChanged
+        - OwnershipTransferred
+        - Paused
+        - TokenCreated
+        - Transfer
+        - Unpaused
+        - UpdateScore
+        - balanceChanged
+      abis:
+        - name: MyToken
+          file: MyToken/abis/MyToken.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: handleDelegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: handleDelegateVotesChanged
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Paused(address)
+          handler: handlePaused
+        - event: TokenCreated(string,string)
+          handler: handleTokenCreated
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Unpaused(address)
+          handler: handleUnpaused
+        - event: UpdateScore(address,uint256)
+          handler: handleUpdateScore
+        - event: balanceChanged(address,uint256,uint256)
+          handler: handlebalanceChanged
+      file: MyToken/MyToken.wasm
+  - kind: ethereum
+    name: DNS
+    network: fuji
+    source:
+      address: "0x8eD85ab44b29286D878492da06c862770A078176"
+      abi: DNS
+      startBlock: 20931604
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - DNSApproval
+        - ApprovalForAll
+        - DNSCreated
+        - DNSOwnershipTransferred
+        - Registered
+        - DNSTransfer
+        - UpdateVc
+      abis:
+        - name: DNS
+          file: DNS/abis/DNS.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,indexed uint256)
+          handler: handleApproval
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: DNSCreated(string,string,address)
+          handler: handleDNSCreated
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Registered(address,string,string,bool)
+          handler: handleRegistered
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+        - event: UpdateVc(string,string,string)
+          handler: handleUpdateVc
+      file: DNS/DNS.wasm

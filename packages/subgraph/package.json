@@ -5,17 +5,15 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ subgraph3",
-    "create-local": "graph create --node http://localhost:8020/ subgraph3",
-    "remove-local": "graph remove --node http://localhost:8020/ subgraph3",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 subgraph3",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ subgraph4",
+    "create-local": "graph create --node http://localhost:8020/ subgraph4",
+    "remove-local": "graph remove --node http://localhost:8020/ subgraph4",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 subgraph4",
     "test": "graph test"
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "^0.46.1",
-    "@graphprotocol/graph-ts": "^0.29.3"
+    "@graphprotocol/graph-cli": "0.46.1",
+    "@graphprotocol/graph-ts": "0.29.1"
   },
-  "devDependencies": {
-    "matchstick-as": "0.5.0"
-  }
+  "devDependencies": { "matchstick-as": "0.5.0" }
 }
