@@ -1,0 +1,25 @@
+{
+  "name": "Web3PortfolioWallet",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mashharuki/Web3PortfolioWallet.git",
+  "author": "mashharuki",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "compile:contract": "yarn workspace backend compile",
+    "test:contract": "yarn workspace backend test",
+    "deploy:fuji": "yarn workspace backend deploy:fuji",
+    "deploy:sepolia": "yarn workspace backend deploy:sepolia",
+    "start:frontend": "yarn workspace frontend start",
+    "build:frontend": "yarn workspace frontend build",
+    "test:frontend": "yarn workspace frontend test",
+    "start:api": "yarn workspace api start",
+    "convert": "yarn workspace vcScripts convert"
+  }
+
+
+}
