@@ -20,12 +20,12 @@
     "deploy:op": "npx truffle migrate --network op",
     "deploy:arbitrum": "npx truffle migrate --network arbitrum",
     "deploy:aurora": "npx truffle migrate --network aurora",
-    "verify:goreli": "npx truffle run verify WalletFactoryV4 --network goreli && npx truffle run verify MyToken --network goreli",
-    "verify:mumbai": "npx truffle run verify WalletFactoryV4 --network mumbai && npx truffle run verify MyToken --network mumbai",
-    "verify:bsctest": "npx truffle run verify WalletFactoryV4 --network bsctest && npx truffle run verify MyToken --network bsctest",
-    "verify:fuji": "npx truffle run verify WalletFactoryV4 --network fuji && npx truffle run verify MyToken --network fuji",
-    "verify:ftm": "npx truffle run verify WalletFactoryV4 --network ftm && npx truffle run verify MyToken --network ftm",
-    "verify:aurora": "npx truffle run verify WalletFactoryV4 --network aurora && npx truffle run verify MyToken --network aurora"
+    "verify:goreli": "npx truffle run verify DNS --network goreli && npx truffle run verify MyToken --network goreli",
+    "verify:mumbai": "npx truffle run verify DNS --network mumbai && npx truffle run verify MyToken --network mumbai",
+    "verify:bsctest": "npx truffle run verify DNS --network bsctest && npx truffle run verify MyToken --network bsctest",
+    "verify:fuji": "npx truffle run verify DNS --network fuji && npx truffle run verify MyToken --network fuji",
+    "verify:ftm": "npx truffle run verify DNS --network ftm && npx truffle run verify MyToken --network ftm",
+    "verify:aurora": "npx truffle run verify DNS --network aurora && npx truffle run verify MyToken --network aurora"
   },
   "keywords": [],
   "author": "mashharuki",

@@ -22,8 +22,10 @@ yarn
 yarn test:contract
 ```
 
-- Smartcontract deploy to Avalanche fuji Network
+- deploy Smartcontract to Avalanche fuji Network
 
 ```bash
 yarn deploy:fuji
 ```
+
+- verify Smartcontract to Avalanche fuji Network

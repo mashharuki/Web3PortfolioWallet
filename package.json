@@ -14,6 +14,7 @@
     "test:contract": "yarn workspace backend test",
     "deploy:fuji": "yarn workspace backend deploy:fuji",
     "deploy:sepolia": "yarn workspace backend deploy:sepolia",
+    "verify:fuji": "yarn workspace backend verify:fuji",
     "start:frontend": "yarn workspace frontend start",
     "build:frontend": "yarn workspace frontend build",
     "test:frontend": "yarn workspace frontend test",
