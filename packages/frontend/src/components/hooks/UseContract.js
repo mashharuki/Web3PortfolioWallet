@@ -3,9 +3,9 @@
  */
 import BloctoSDK from '@blocto/sdk';
 import Web3 from 'web3';
+import DNS from './../../contracts/DNS.json';
 import MyToken from './../../contracts/MyToken.json';
-import WalletFactory from './../../contracts/WalletFactoryV4.json';
-import { CHAIN_ID, CONTRACT_ADDRESS, MYTOKEN_ADDRESS, RPC_URL } from "./../common/Constant";
+import { CHAIN_ID, DNS_ADDRESS, MYTOKEN_ADDRESS, RPC_URL } from "./../common/Constant";
 
 /**
  * getProvider メソッド
@@ -56,7 +56,7 @@ export const connectWallet = async() => {
  */
 export const getDid = async(signer) => {
       // call createContractObject
-      const FactoryContract = createContractObject(WalletFactory.abi, CONTRACT_ADDRESS);
+      const FactoryContract = createContractObject(DNS.abi, DNS_ADDRESS);
       // get did info
       const result = await FactoryContract.methods.dids(signer).call();
       return result;
@@ -80,7 +80,7 @@ export const getTokenBalanceOf = async(signer) => {
  */
 export const getRegisterStatus = async(signer) => {
       // call createContractObject メソッド
-      const FactoryContract = createContractObject(WalletFactory.abi, CONTRACT_ADDRESS);
+      const FactoryContract = createContractObject(DNS.abi, DNS_ADDRESS);
       // get status info
       var status = await FactoryContract.methods.isRegistered(signer).call();
       return status;
@@ -92,7 +92,7 @@ export const getRegisterStatus = async(signer) => {
  */
 export const getVcs = async(did) => {
       // call createContractObject メソッド
-      const FactoryContract = createContractObject(WalletFactory.abi, CONTRACT_ADDRESS);
+      const FactoryContract = createContractObject(DNS.abi, DNS_ADDRESS);
       // get Verifiable Credentials info
       var vcs = await FactoryContract.methods.getVcs(did).call();
       return vcs;

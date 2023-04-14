@@ -12,10 +12,8 @@ import SendDialog from '../common/SendDialog';
 import { useMyContext } from './../../Contexts';
 import './../../assets/css/App.css';
 import {
-    WIDTH_THRESHOLD,
     baseURL
 } from './../common/Constant';
-import GroupButtons from './../common/GroupButtons';
 import MainContainer from './../common/MainContainer';
 import QrCodeDialog from './../common/QrCodeDialog';
 import QrCodeReader from './../common/QrCodeReader';
@@ -327,8 +325,6 @@ const Home = (props) => {
                             <div id="desc">Create Trasaction failfull..</div>
                         </div>
                     )}
-                    {/* 画面の幅が一定以下になった際には下部に遷移用のリンクを表示する。 */}
-                    {width < WIDTH_THRESHOLD && <GroupButtons/>}
                 </MainContainer>
             )}
         </>

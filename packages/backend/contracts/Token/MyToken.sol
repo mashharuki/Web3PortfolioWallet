@@ -129,6 +129,6 @@ contract MyToken is
         uint newScore = oldScore + point;
         scores[addr] = newScore;
 
-        emit UpdateScore(addr, newScore);
+        emit UpdateScore(addr, scores[addr]);
     }
 }
