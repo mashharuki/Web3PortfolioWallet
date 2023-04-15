@@ -189,11 +189,6 @@ const Home2 = (props: any) => {
     alert("VCをアップロードします");
   };
 
-  // VCを検証
-  const verifyYourVC = async () => {
-    alert("VCを検証します");
-  };
-
   const thisMinWidth = 300;
 
   return (
@@ -444,15 +439,16 @@ const Home2 = (props: any) => {
               >
                 Upload Your VC
               </Button>
-              <Button
-                variant="contained"
-                onClick={verifyYourVC}
-                sx={{
-                  borderRadius: "8px",
-                }}
-              >
-                Verify Your VC
-              </Button>
+              <a href="https://www.blockcerts.org/">
+                <Button
+                  variant="contained"
+                  sx={{
+                    borderRadius: "8px",
+                  }}
+                >
+                  Verify Your VC
+                </Button>
+              </a>
             </Box>
           </Stack>
           {/* your NFT */}
