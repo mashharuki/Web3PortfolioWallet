@@ -16,12 +16,12 @@ import ActionButton2 from "../common/ActionButton2";
 import LoadingIndicator from "../common/LoadingIndicator";
 import SendDialog from "../common/SendDialog";
 import "./../../assets/css/App.css";
-import { useMyContext } from "../../Contexts";
-import { baseURL, WIDTH_THRESHOLD } from "../common/Constant";
-import GroupButtons from "../common/GroupButtons";
-import MainContainer from "../common/MainContainer";
-import QrCodeDialog from "../common/QrCodeDialog";
-import QrCodeReader from "../common/QrCodeReader";
+import { useMyContext } from "./../../Contexts";
+import { baseURL } from "../common/Constant";
+//import GroupButtons from "../common/GroupButtons";
+import MainContainer from "./../common/MainContainer";
+import QrCodeDialog from "./../common/QrCodeDialog";
+import QrCodeReader from "./../common/QrCodeReader";
 import {
   getDid,
   getRegisterStatus,
@@ -56,15 +56,17 @@ const Home1 = (props) => {
     setIsOpenQRCamera,
     setQrResult,
     clickOpenQrReader,
+    successFlg,
+    failFlg,
+    showToast,
+    isLoading,
+    setIsLoading,
+    popUp,
   } = useMyContext();
 
   const [balance, setBalance] = useState(0);
   const [did, setDid] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
   const [isRegistered, setIsRegistered] = useState(false);
-  const [successFlg, setSuccessFlg] = useState(false);
-  const [failFlg, setFailFlg] = useState(false);
-  const [showToast, setShowToast] = useState(false);
   const [to, setTo] = useState(null);
   const [amount, setAmount] = useState(0);
   const [open, setOpen] = useState(false);
@@ -76,30 +78,33 @@ const Home1 = (props) => {
   const registerAction = async () => {
     setIsLoading(true);
 
-    // DID作成APIを呼び出す
+    // call DID creation API
     superAgent
       .post(baseURL + "/api/create")
-      .query({ addr: currentAccount })
+      .query({
+        addr: currentAccount,
+        name: "test.eth",
+      })
       .end(async (err, res) => {
         if (err) {
-          console.log("DID作成用API呼び出し中に失敗", err);
-          // popUpメソッドの呼び出し
+          console.log("fail: during call DID creation API", err);
+          // call popUp method
           popUp(false, "failfull...");
           //setIsLogined(false);
           setIsLoading(false);
           return err;
         }
 
-        // DIDを取得する。
+        // get DID
         const result = await getDid(currentAccount);
         var modStr =
           result.substr(0, 9) + "..." + result.substr(result.length - 3, 3);
 
         setDid(modStr);
         setFullDid(result);
-        console.log("DID作成用API呼び出し結果：", result);
+        console.log("result of DID call API: ", result);
 
-        // Token発行APIを呼び出す
+        // call Token mint API
         superAgent
           .post(baseURL + "/api/mintToken")
           .query({
@@ -108,15 +113,15 @@ const Home1 = (props) => {
           })
           .end(async (err, res) => {
             if (err) {
-              console.log("Token発行用API呼び出し中に失敗", err);
-              // popUpメソッドの呼び出し
+              console.log("fail: during call Token mint API", err);
+              // call popUp method
               popUp(false, "failfull...");
               setIsLoading(false);
               return err;
             }
           });
 
-        // popUpメソッドの呼び出し
+        // call popUp method
         popUp(true, "successfull!!");
         await checkStatus();
         setIsLoading(false);
@@ -130,7 +135,7 @@ const Home1 = (props) => {
   const sendAction = async (to, amount) => {
     setIsLoading(true);
 
-    // 送金用のAPIを呼び出す
+    // call Token send API
     superAgent
       .post(baseURL + "/api/send")
       .query({
@@ -140,44 +145,17 @@ const Home1 = (props) => {
       })
       .end(async (err, res) => {
         if (err) {
-          console.log("Token送金用API呼び出し中に失敗", err);
-          // popUpメソッドの呼び出し
+          console.log("fail: during call Token send API", err);
+          // call popUp method
           popUp(false, "failfull...");
           setIsLoading(false);
           return err;
         }
         await getBalance();
         setIsLoading(false);
-        // popUpメソッドの呼び出し
+        // call popUp method
         popUp(true, "successfull!!");
       });
-  };
-
-  /**
-   * ポップアップ時の処理を担当するメソッド
-   * @param flg true：成功 false：失敗
-   */
-  const popUp = (flg) => {
-    // 成功時と失敗時で処理を分岐する。
-    if (flg === true) {
-      // ステート変数を更新する。
-      setSuccessFlg(true);
-      setShowToast(true);
-      // 5秒後に非表示にする。
-      setTimeout(() => {
-        setSuccessFlg(false);
-        setShowToast(false);
-      }, 5000);
-    } else {
-      // ステート変数を更新する。
-      setFailFlg(true);
-      setShowToast(true);
-      // 5秒後に非表示にする。
-      setTimeout(() => {
-        setFailFlg(false);
-        setShowToast(false);
-      }, 5000);
-    }
   };
 
   /**
@@ -211,16 +189,16 @@ const Home1 = (props) => {
   };
 
   /**
-   * クリップボードでDIDをコピーするための機能
+   * copy DID via clipboard
    */
   const copy = () => {
-    //コピー
+    // copy
     navigator.clipboard.writeText(fullDid).then(
-      function () {
+      function() {
         console.log("Async: Copyed to clipboard was successful!");
         alert("Copying to clipboard was successful!");
       },
-      function (err) {
+      function(err) {
         console.error("Async: Could not copy text: ", err);
       }
     );
@@ -230,7 +208,7 @@ const Home1 = (props) => {
    * getBalance function
    */
   const getBalance = async () => {
-    // 残高を取得する
+    // get balance
     const num = await getTokenBalanceOf(currentAccount);
     setBalance(num);
   };
@@ -239,13 +217,13 @@ const Home1 = (props) => {
    * checkStatus function
    */
   const checkStatus = async () => {
-    // 登録ステータスを確認する。
+    // check registerd status
     var status = await getRegisterStatus(currentAccount);
     console.log("isRegistered:", isRegistered);
     setIsRegistered(status);
 
     if (status) {
-      // DIDを取得する。
+      // get DID
       const didData = await getDid(currentAccount);
       console.log("didData :", didData);
       // short
@@ -271,6 +249,20 @@ const Home1 = (props) => {
 
   return (
     <>
+      {/* // Todo: integrate isOpenQRCamera 
+      {isOpenQRCamera ? (
+        <Container maxWidth="md" style={{ paddingTop: "1em", paddingBottom: "10em" }}>
+          <QrCodeReader 
+            onRead={e => {
+              setIsOpenQRCamera(false);
+              setQrResult(e);
+              setTo(e.text);
+            }} 
+            setOpen={setIsOpenQRCamera} 
+          />
+        </Container>
+      ):(
+    */}
       <AppBar position="static" sx={{ backgroundColor: "primary.main" }}>
         <Toolbar sx={{ paddingLeft: "4px" }}>
           <Box

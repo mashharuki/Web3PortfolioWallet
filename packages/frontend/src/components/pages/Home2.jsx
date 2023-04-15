@@ -1,3 +1,4 @@
+// mui関連のコンポーネントのインポート
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { Container, Icon, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
@@ -222,11 +223,11 @@ const Home2 = (props) => {
   const copy = () => {
     //コピー
     navigator.clipboard.writeText(fullDid).then(
-      function () {
+      function() {
         console.log("Async: Copyed to clipboard was successful!");
         alert("Copying to clipboard was successful!");
       },
-      function (err) {
+      function(err) {
         console.error("Async: Could not copy text: ", err);
       }
     );
