@@ -6,30 +6,26 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import { indigo } from "@mui/material/colors";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import superAgent from "superagent";
 import { useMyContext } from "../../Contexts";
 import Logo from "../../assets/imgs/Logo_v3.png";
-import {
-  getDid,
-  getRegisterStatus
-} from "../hooks/UseContract";
 import "./../../assets/css/App.css";
 import {
   baseURL
 } from "./../common/Constant";
 //
 import { useNavigate } from "react-router-dom";
+import ActionButton2 from "../common/ActionButton2";
 import LoadingIndicator from "../common/LoadingIndicator";
+import PaymentDialog from '../common/PaymentDialog';
 
 /**
- * Homeコンポーネント
+ * Buy
  */
-const Home1 = (props:any) => {
+const Buy = (props:any) => {
   const {
     currentAccount,
-    fullDid,
-    setFullDid
   }: any = props;
 
   // create contract
@@ -37,13 +33,11 @@ const Home1 = (props:any) => {
     updateWidth,
   }: any = useMyContext();
 
-  const [balance, setBalance] = useState(0);
   const [did, setDid] = useState<string>("");
   const [isRegistered, setIsRegistered] = useState(false);
   const [to, setTo] = useState(null);
   const [amount, setAmount] = useState(0);
   const [open, setOpen] = useState(false);
-  const [qrOpen, setQrOpen] = useState(false);
   const [didName, setDidName] = useState("foo");
   const [isLoading, setIsLoading] = useState(false);
   const [successFlg, setSuccessFlg] = useState(false);
@@ -53,86 +47,46 @@ const Home1 = (props:any) => {
   const navigate = useNavigate();
 
   /**
-   * Register function
+   * Buy function 
    */
-  const registerAction = async () => {
-    setIsLoading(true);
-    // call DID creation API
-    superAgent
-      .post(baseURL + "/api/create")
-      .query({
-        addr: currentAccount,
-        name: didName,
-      })
-      .end(async (err, res) => {
-        if (err) {
-          console.log("fail: during call DID creation API", err);
-          // call popUp method
-          popUp(false);
-          //setIsLogined(false);
-          setIsLoading(false);
-          return err;
-        }
-
-        // get DID
-        const result = await getDid(currentAccount);
-        var modStr = result.substr(0, 9) + "..." + result.substr(result.length - 3, 3);
-
-        setDid(modStr);
-        setFullDid(result);
-        console.log("result of DID call API: ", result);
-
-        // call Token mint API
-        superAgent
-          .post(baseURL + "/api/mintToken")
-          .query({
-            to: currentAccount,
-            amount: 10000,
-          })
-          .end(async (err, res) => {
-            if (err) {
-              console.log("fail: during call Token mint API", err);
-              // call popUp method
-              popUp(false);
-              setIsLoading(false);
-              return err;
-            }
-          });
-
-        // call popUp method
-        popUp(true);
-        await checkStatus();
-        setIsLoading(false);
-        // transition to Home2 after registering DID
-        navigate("/home2");
-      });
+  const buyAction = async() => {
+      setIsLoading(true);
+      // call mint token API
+      superAgent
+            .post(baseURL + '/api/mintToken')
+            .query({
+                  to: currentAccount,
+                  amount: amount
+            })
+            .end(async(err, res) => {
+                  if (err) {
+                        console.log("発行用API呼び出し中に失敗", err);
+                        // popUpメソッドの呼び出し
+                        popUp(false);
+                        setIsLoading(false);
+                        return err;
+                  }
+                  // popUpメソッドの呼び出し
+                  popUp(true);
+                  setIsLoading(false);   
+            });
   };
 
-  /**
-   * checkStatus function
-   */
-  const checkStatus = async () => {
-    // check registerd status
-    var status = await getRegisterStatus(currentAccount);
-    console.log("isRegistered:", isRegistered);
-    setIsRegistered(status);
+      /**
+       * Open Dialog
+       * @param wallet MultoSig Wallet Addr
+       */
+      const handleOpen = () => {
+            setOpen(true);
+      }
 
-    if (status) {
-      // get DID
-      const didData = await getDid(currentAccount);
-      console.log("didData :", didData);
-      // short
-      var modStr =
-        didData.substr(0, 9) + "..." + didData.substr(didData.length - 3, 3);
-      setDid(modStr);
-      setFullDid(didData);
-      navigate("/home2");
-    }
-  };
+      /**
+       * Close Dialog
+       */
+      const handleClose = () => {
+            setOpen(false);
+      }
 
-  const handleChange = (event: any) => {
-    setDidName(event.target.value);
-  };
 
   /**
    * popUp
@@ -160,16 +114,9 @@ const Home1 = (props:any) => {
     }
   };
 
-  useEffect(() => {
-    checkStatus();
-
-    window.addEventListener(`resize`, updateWidth, {
-      capture: false,
-      passive: true,
-    });
-
-    return () => window.removeEventListener(`resize`, updateWidth);
-  }, []);
+  const returnAction = () => {
+      navigate("/home2");
+  };
 
   return (
     <>
@@ -183,10 +130,17 @@ const Home1 = (props:any) => {
             <img src={Logo} alt="Web3 Portfolio Walet - Logo" />
           </Box>
           <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-            Register DID
+            Buy
           </Typography>
         </Toolbar>
       </AppBar>
+
+      { /* Payment Dialog */ } 
+      <PaymentDialog 
+            open={open} 
+            handleClose={(e:any) => {handleClose()}} 
+            buyAction={(e:any) => {buyAction()}}
+      />
 
       {isLoading ? (
         <Grid container justifyContent="center">
@@ -220,42 +174,46 @@ const Home1 = (props:any) => {
                 marginBottom: "16pt",
               }}
             >
-              Your Account &amp; Wallet is <br /> Successfully Created
+             You can buy token
             </Typography>
-            <Typography variant="body1">
-              Don't worry about your private key!
-              <br /> I control it safely.
-            </Typography>
-          </Box>
-          <Box>
-            <TextField
-              required
-              id="filled-required"
-              label="Your Identity (DID) name"
-              value={didName}
-              onChange={handleChange}
-              variant="filled"
-              sx={{
-                backgroundColor: "white",
-                borderRadius: "8pt",
-              }}
+            <TextField 
+                  id="amount" 
+                  placeholder="enter amount" 
+                  margin="normal" 
+                  required
+                  onChange={ (e:any) => setAmount(e.target.value) } 
+                  variant="outlined" 
+                  inputProps={{ 'aria-label': 'amount' }} 
             />
+            <ActionButton2 buttonName="buy" color="primary" clickAction={handleOpen} /> 
           </Box>
           <Box>
             <Button
               variant="contained"
-              onClick={registerAction}
+              onClick={returnAction}
               sx={{
                 borderRadius: "8px",
               }}
             >
-              Register Your Identity
+              return to home
             </Button>
           </Box>
+          {successFlg && (
+            /* 成功時のポップアップ */
+            <div id="toast" className={showToast ? "zero-show" : ""}>
+              <div id="secdesc">Trasaction Successfull!!</div>
+            </div>
+          )}
+          {failFlg && (
+            /* 失敗時のポップアップ */
+            <div id="toast" className={showToast ? "zero-show" : ""}>
+              <div id="desc">Trasaction failfull..</div>
+            </div>
+          )}
         </Stack>
       )}
     </>
   );
 };
 
-export default Home1;
+export default Buy;
