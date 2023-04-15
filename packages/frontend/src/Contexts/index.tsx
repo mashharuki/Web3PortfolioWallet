@@ -7,7 +7,7 @@ export const MyContext = createContext({});
  * useContractContext function
  * @returns 
  */
-export const useMyContext = () => {
+export function useMyContext() {
   return useContext(MyContext);
 }
 
@@ -15,15 +15,9 @@ export const useMyContext = () => {
  * ContextProvider
  * @param children
  */
-export const ContextProvider = ({ children }: any) => {
-  const [currentAccount, setCurrentAccount] = useState(null);
-  const [fullDid, setFullDid] = useState(null);
+export function ContextProvider({ children }: any) {
   const [width, setWidth] = useState(0);
-  const [isOpenQRCamera, setIsOpenQRCamera] = useState(false);
   const [qrResult, setQrResult] = useState({});
-  const [successFlg, setSuccessFlg] = useState(false);
-  const [failFlg, setFailFlg] = useState(false);
-  const [showToast, setShowToast] = useState(false);
 
   /**
    * update screent width
@@ -33,61 +27,14 @@ export const ContextProvider = ({ children }: any) => {
     setWidth(window.innerWidth)
   }
 
-  /**
-   * clickOpenQrReader function
-   */
-  const clickOpenQrReader = () => {
-    setIsOpenQRCamera(true);
-  };
-
-  /**
-   * popUp
-   * @param flg true: success false：fail
-   */
-  const popUp = (flg: any) => {
-    if(flg === true) {
-        // ステート変数を更新する。
-        setSuccessFlg(true);
-        setShowToast(true);       
-        // 5秒後に非表示にする。
-        setTimeout(() => {
-            setSuccessFlg(false);
-            setShowToast(false);             
-        }, 5000);
-    } else {
-        // ステート変数を更新する。
-        setFailFlg(true);
-        setShowToast(true);     
-        // 5秒後に非表示にする。
-        setTimeout(() => {
-            setFailFlg(false);
-            setShowToast(false);
-        }, 5000);
-    }
-};
-
   return (
     <MyContext.Provider 
       value={{
-        currentAccount,
-        setCurrentAccount,
         width,
         setWidth,
-        fullDid, 
-        setFullDid,
-        isOpenQRCamera, 
-        setIsOpenQRCamera,
         qrResult, 
         setQrResult,
-        successFlg,
-        setSuccessFlg,
-        failFlg,
-        setFailFlg,
-        showToast,
-        setShowToast,
         updateWidth,
-        clickOpenQrReader,
-        popUp
       }}
     >
       {children}

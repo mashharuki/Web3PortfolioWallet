@@ -2,10 +2,12 @@
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import { indigo } from "@mui/material/colors";
 import { useEffect, useState } from "react";
+import superAgent from "superagent";
 import { useMyContext } from "../../Contexts";
 import Logo from "../../assets/imgs/Logo_v3.png";
 import {
@@ -13,29 +15,26 @@ import {
   getRegisterStatus
 } from "../hooks/UseContract";
 import "./../../assets/css/App.css";
+import {
+  baseURL
+} from "./../common/Constant";
 //
 import { useNavigate } from "react-router-dom";
+import LoadingIndicator from "../common/LoadingIndicator";
 
 /**
  * Homeコンポーネント
  */
 const Home1 = (props:any) => {
-  // create contract
   const {
     currentAccount,
-    updateWidth,
-    width,
-    setWidth,
     fullDid,
-    setFullDid,
-    isOpenQRCamera,
-    setIsOpenQRCamera,
-    setQrResult,
-    clickOpenQrReader,
-    successFlg,
-    failFlg,
-    showToast,
-    popUp,
+    setFullDid
+  }: any = props;
+
+  // create contract
+  const {
+    updateWidth,
   }: any = useMyContext();
 
   const [balance, setBalance] = useState(0);
@@ -47,6 +46,9 @@ const Home1 = (props:any) => {
   const [qrOpen, setQrOpen] = useState(false);
   const [didName, setDidName] = useState("foo");
   const [isLoading, setIsLoading] = useState(false);
+  const [successFlg, setSuccessFlg] = useState(false);
+  const [failFlg, setFailFlg] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const navigate = useNavigate();
 
@@ -54,7 +56,6 @@ const Home1 = (props:any) => {
    * Register function
    */
   const registerAction = async () => {
-    /*
     setIsLoading(true);
     // call DID creation API
     superAgent
@@ -102,10 +103,9 @@ const Home1 = (props:any) => {
         popUp(true);
         await checkStatus();
         setIsLoading(false);
+        // transition to Home2 after registering DID
+        navigate("/home2");
       });
-    */
-    // transition to Home2 after registering DID
-    navigate("/home2");
   };
 
   /**
@@ -132,6 +132,32 @@ const Home1 = (props:any) => {
 
   const handleChange = (event: any) => {
     setDidName(event.target.value);
+  };
+
+  /**
+   * popUp
+   * @param flg true: success false：fail
+   */
+  const popUp = (flg: any) => {
+    if(flg === true) {
+      // ステート変数を更新する。
+      setSuccessFlg(true);
+      setShowToast(true);       
+      // 5秒後に非表示にする。
+      setTimeout(() => {
+          setSuccessFlg(false);
+          setShowToast(false);             
+      }, 5000);
+    } else {
+      // ステート変数を更新する。
+      setFailFlg(true);
+      setShowToast(true);     
+      // 5秒後に非表示にする。
+      setTimeout(() => {
+          setFailFlg(false);
+          setShowToast(false);
+      }, 5000);
+    }
   };
 
   useEffect(() => {
@@ -162,63 +188,72 @@ const Home1 = (props:any) => {
         </Toolbar>
       </AppBar>
 
-      <Stack
-        spacing={4}
-        alignContent={"center"}
-        alignItems={"center"}
-        sx={{
-          paddingTop: "32pt",
-          backgroundColor: indigo[100],
-          height: "100vh",
-        }}
-      >
-        <Box
+      {isLoading ? (
+        <Grid container justifyContent="center">
+          <div className="loading">
+            <p><LoadingIndicator/></p>
+            <h3>Please Wait・・・・</h3>
+          </div>
+        </Grid>
+      ) :(
+        <Stack
+          spacing={4}
+          alignContent={"center"}
+          alignItems={"center"}
           sx={{
-            backgroundColor: "white",
-            borderRadius: "8pt",
-            padding: "16pt",
-            width: "200pt",
+            paddingTop: "32pt",
+            backgroundColor: indigo[100],
+            height: "100vh",
           }}
         >
-          <Typography
-            variant="h6"
-            sx={{
-              marginBottom: "16pt",
-            }}
-          >
-            Your Account &amp; Wallet is <br /> Successfully Created
-          </Typography>
-          <Typography variant="body1">
-            Don't worry about your private key!
-            <br /> I control it safely.
-          </Typography>
-        </Box>
-        <Box>
-          <TextField
-            required
-            id="filled-required"
-            label="Your Identity (DID) name"
-            value={didName}
-            onChange={handleChange}
-            variant="filled"
+          <Box
             sx={{
               backgroundColor: "white",
               borderRadius: "8pt",
-            }}
-          />
-        </Box>
-        <Box>
-          <Button
-            variant="contained"
-            onClick={registerAction}
-            sx={{
-              borderRadius: "8px",
+              padding: "16pt",
+              width: "200pt",
             }}
           >
-            Register Your Identity
-          </Button>
-        </Box>
-      </Stack>
+            <Typography
+              variant="h6"
+              sx={{
+                marginBottom: "16pt",
+              }}
+            >
+              Your Account &amp; Wallet is <br /> Successfully Created
+            </Typography>
+            <Typography variant="body1">
+              Don't worry about your private key!
+              <br /> I control it safely.
+            </Typography>
+          </Box>
+          <Box>
+            <TextField
+              required
+              id="filled-required"
+              label="Your Identity (DID) name"
+              value={didName}
+              onChange={handleChange}
+              variant="filled"
+              sx={{
+                backgroundColor: "white",
+                borderRadius: "8pt",
+              }}
+            />
+          </Box>
+          <Box>
+            <Button
+              variant="contained"
+              onClick={registerAction}
+              sx={{
+                borderRadius: "8px",
+              }}
+            >
+              Register Your Identity
+            </Button>
+          </Box>
+        </Stack>
+      )}
     </>
   );
 };

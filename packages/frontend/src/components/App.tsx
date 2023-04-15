@@ -2,17 +2,14 @@ import AppBar from "@mui/material/AppBar";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  Link,
   Route,
   BrowserRouter as Router,
   Routes,
-  useNavigate,
+  useNavigate
 } from "react-router-dom";
-import { useMyContext } from "./../Contexts";
 import "./../assets/css/App.css";
-import Web3Menu from "./common/Web3Menu";
 import { connectWallet } from "./hooks/UseContract";
 import NoPage from "./pages/NoPage";
 //
@@ -40,10 +37,13 @@ const client = new Client({
 /**
  * App Component
  */
-function AppContent() {
-  // create contract
-  const { currentAccount, setCurrentAccount }: any = useMyContext();
+function AppContent(props: any) {
 
+  const {
+    currentAccount, 
+    setCurrentAccount
+  }: any = props;
+  
   /**
    * connect wallet method
    */
@@ -53,6 +53,7 @@ function AppContent() {
       const { signer } = await connectWallet();
 
       setCurrentAccount(signer);
+      navigate("/Home1");
     } catch (error) {
       console.log(error);
     }
@@ -81,7 +82,7 @@ function AppContent() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (currentAccount !== null) {
+    if (currentAccount !== null && currentAccount !== undefined ) {
       navigate("/Home1");
     }
   }, [currentAccount, navigate]);
@@ -232,28 +233,20 @@ function AppContent() {
               marginBottom: "28px",
             }}
           >
-            {currentAccount === null && currentAccount === undefined ? (
-              <Stack spacing={2}>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  size="large"
-                  onClick={connectWalletAction}
-                  sx={{
-                    borderRadius: "8px",
-                    marginTop: "60px",
-                  }}
-                >
-                  Enter App
-                </Button>
-
-                <Link to="/Home1">tmp: link to Home1</Link>
-                <Link to="/Home2">tmp: link to Home2</Link>
-              </Stack>
-            ) : (
-              /* 各画面に遷移するためのWeb3Menuコンポーネントを表示する。 */
-              <Web3Menu /> // Todo：Web3Menuを表示する代わりにBlocto作業が終わったらHome1に遷移させる
-            )}
+            <Stack spacing={2}>
+              <Button
+                variant="contained"
+                color="secondary"
+                size="large"
+                onClick={connectWalletAction}
+                sx={{
+                  borderRadius: "8px",
+                  marginTop: "60px",
+                }}
+              >
+                Enter App
+              </Button>
+            </Stack>
           </Box>
         </Stack>
       </div>
@@ -266,13 +259,17 @@ function AppContent() {
  * @returns 
  */
 function App() {
+
+  const [currentAccount, setCurrentAccount] = useState(null);
+  const [fullDid, setFullDid] = useState(null);
+
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<AppContent />} />
-          <Route path="/home1" element={<Home1 />} />
-          <Route path="/home2" element={<Home2 />} />
+          <Route path="/" element={<AppContent currentAccount={currentAccount} setCurrentAccount={setCurrentAccount}/>} />
+          <Route path="/home1" element={<Home1 currentAccount={currentAccount} fullDid={fullDid} setFullDid={setFullDid}/>} />
+          <Route path="/home2" element={<Home2 currentAccount={currentAccount} fullDid={fullDid} setFullDid={setFullDid}/>} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </Router>
