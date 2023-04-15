@@ -12,7 +12,7 @@ jobs:
         id: npm-cache
         with:
           path: "**/node_modules"
-          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - name: Install packages
         run: yarn
 
@@ -24,7 +24,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: "**/node_modules"
-          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - name: Contract test
         run: yarn test:contract
 
@@ -37,7 +37,7 @@ jobs:
       - uses: actions/cache@v3
         with:
           path: "**/node_modules"
-          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
       - name: Frontend build
         run: yarn build:frontend
         env:

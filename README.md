@@ -112,3 +112,9 @@ yarn subgraph:build
 ```bash
 yarn subgraph:deploy
 ```
+
+- kms connect test
+
+```bash
+yarn test:kms
+```
