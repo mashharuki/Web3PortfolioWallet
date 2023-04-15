@@ -12,7 +12,7 @@
 <img src="./assets/imgs/Web3PortfolioWallet2.png">
 <img src="./assets/imgs/Web3PortfolioWallet3.png">
 <img src="./assets/imgs/Web3PortfolioWallet4.png">
-<img src="./assets/imgs/Web3PortfolioWallet5.png">
+<img src="./assets/imgs/Web3PortfolioWallet5b.png">
 
 ## deployed Smartcontract
 
