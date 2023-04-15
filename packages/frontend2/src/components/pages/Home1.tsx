@@ -10,8 +10,7 @@ import { useMyContext } from "../../Contexts";
 import Logo from "../../assets/imgs/Logo_v3.png";
 import {
   getDid,
-  getRegisterStatus,
-  getTokenBalanceOf,
+  getRegisterStatus
 } from "../hooks/UseContract";
 import "./../../assets/css/App.css";
 //
@@ -36,8 +35,6 @@ const Home1 = (props:any) => {
     successFlg,
     failFlg,
     showToast,
-    isLoading,
-    setIsLoading,
     popUp,
   }: any = useMyContext();
 
@@ -48,6 +45,8 @@ const Home1 = (props:any) => {
   const [amount, setAmount] = useState(0);
   const [open, setOpen] = useState(false);
   const [qrOpen, setQrOpen] = useState(false);
+  const [didName, setDidName] = useState("foo");
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -110,15 +109,6 @@ const Home1 = (props:any) => {
   };
 
   /**
-   * getBalance function
-   */
-  const getBalance = async () => {
-    // get balance
-    const num = await getTokenBalanceOf(currentAccount);
-    setBalance(num);
-  };
-
-  /**
    * checkStatus function
    */
   const checkStatus = async () => {
@@ -136,11 +126,15 @@ const Home1 = (props:any) => {
         didData.substr(0, 9) + "..." + didData.substr(didData.length - 3, 3);
       setDid(modStr);
       setFullDid(didData);
+      navigate("/home2");
     }
   };
 
+  const handleChange = (event: any) => {
+    setDidName(event.target.value);
+  };
+
   useEffect(() => {
-    getBalance();
     checkStatus();
 
     window.addEventListener(`resize`, updateWidth, {
@@ -151,29 +145,8 @@ const Home1 = (props:any) => {
     return () => window.removeEventListener(`resize`, updateWidth);
   }, []);
 
-  // set DID name
-  const [didName, setDidName] = useState("foo");
-
-  const handleChange = (event: any) => {
-    setDidName(event.target.value);
-  };
-
   return (
     <>
-      {/* // Todo: integrate isOpenQRCamera 
-      {isOpenQRCamera ? (
-        <Container maxWidth="md" style={{ paddingTop: "1em", paddingBottom: "10em" }}>
-          <QrCodeReader 
-            onRead={e => {
-              setIsOpenQRCamera(false);
-              setQrResult(e);
-              setTo(e.text);
-            }} 
-            setOpen={setIsOpenQRCamera} 
-          />
-        </Container>
-      ):(
-    */}
       <AppBar position="static" sx={{ backgroundColor: "primary.main" }}>
         <Toolbar sx={{ paddingLeft: "4px" }}>
           <Box
@@ -186,8 +159,6 @@ const Home1 = (props:any) => {
           <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
             Register DID
           </Typography>
-
-          {/*<Button color="inherit">Login</Button>*/}
         </Toolbar>
       </AppBar>
 

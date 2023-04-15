@@ -232,7 +232,7 @@ function AppContent() {
               marginBottom: "28px",
             }}
           >
-            {currentAccount === null ? (
+            {currentAccount === null && currentAccount === undefined ? (
               <Stack spacing={2}>
                 <Button
                   variant="contained"

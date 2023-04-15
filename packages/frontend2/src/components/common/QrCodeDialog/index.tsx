@@ -7,7 +7,6 @@ import {
 } from '@mui/material';
 import QRCode from 'qrcode.react';
 import './QrCodeDialog.css';
-
 /**
  * QrCodeDialogコンポーネント
  * @param props 引数
@@ -15,6 +14,7 @@ import './QrCodeDialog.css';
 const QrCodeDialog = (props:any) => {
       // 引数から値を取得する。
       const { 
+            title,
             open, 
             did,
             handleClose, 
@@ -28,7 +28,7 @@ const QrCodeDialog = (props:any) => {
                         aria-labelledby="form-dialog-title"
                   >
                         <DialogTitle id="form-dialog-title">
-                              My DID 
+                              {title}
                         </DialogTitle>
                         <DialogContent >
                               <DialogContentText>

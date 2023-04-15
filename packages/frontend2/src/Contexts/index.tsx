@@ -24,7 +24,6 @@ export const ContextProvider = ({ children }: any) => {
   const [successFlg, setSuccessFlg] = useState(false);
   const [failFlg, setFailFlg] = useState(false);
   const [showToast, setShowToast] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   /**
    * update screent width
@@ -86,8 +85,6 @@ export const ContextProvider = ({ children }: any) => {
         setFailFlg,
         showToast,
         setShowToast,
-        isLoading,
-        setIsLoading,
         updateWidth,
         clickOpenQrReader,
         popUp
