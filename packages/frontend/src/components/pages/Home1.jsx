@@ -83,7 +83,7 @@ const Home1 = (props) => {
       .post(baseURL + "/api/create")
       .query({
         addr: currentAccount,
-        name: "test.eth",
+        name: didName,
       })
       .end(async (err, res) => {
         if (err) {
@@ -247,6 +247,13 @@ const Home1 = (props) => {
     return () => window.removeEventListener(`resize`, updateWidth);
   }, []);
 
+  // set DID name
+  const [didName, setDidName] = useState("foo");
+
+  const handleChange = (event) => {
+    setDidName(event.target.value);
+  };
+
   return (
     <>
       {/* // Todo: integrate isOpenQRCamera 
@@ -316,7 +323,8 @@ const Home1 = (props) => {
             required
             id="filled-required"
             label="Your Identity (DID) name"
-            defaultValue="foo" // Todo: display DID name
+            value={didName}
+            onChange={handleChange}
             variant="filled"
             sx={{
               backgroundColor: "white",
