@@ -1024,3 +1024,67 @@
 [:  2023-04-16 01:38:49 ERROR トランザクション送信失敗 [39m
 [:  2023-04-16 01:38:49 ERROR 残高不足 [39m
 [:  2023-04-16 01:38:49 INFO token送金用のAPI終了 [39m
+[:  2023-04-16 03:02:12 DEBUG 起動しました https://192.168.0.15:3001 [39m
+[:  2023-04-16 03:02:37 INFO token送金用のAPI開始 [39m
+[:  2023-04-16 03:02:37 INFO from: did:ion:EiDrgyAAZO-78TD0aESKD_5U1DAF9rVPHHXjsEDa24Lr-w [39m
+[:  2023-04-16 03:02:37 INFO to: did:ion:EiDrgyAAZO-78TD0aESKD_5U1DAF9rVPHHXjsEDa24Lr-w [39m
+[:  2023-04-16 03:02:37 INFO amount: 4000 [39m
+[:  2023-04-16 03:02:41 INFO fromAddr: 0x20781013FAACce8F743BefEe48aef1420CA100E0 [39m
+[:  2023-04-16 03:02:41 INFO receiveAddr: 0x20781013FAACce8F743BefEe48aef1420CA100E0 [39m
+[:  2023-04-16 03:02:41 INFO balance of fromAddr: 300000000004000000 [39m
+[:  2023-04-16 03:02:42 INFO signedTransaction: 0xf8af8201068506fc23ac008302d2a894ff6e94b43b6c52f64edb32926ad64a59039e835380b844d1df306c00000000000000000000000020781013faacce8f743befee48aef1420ca100e00000000000000000000000000000000000000000000000000000000000000fa0830150f6a074484bfb6134b7df2f125d6ef32f909e13c9e1dadfe30cfd2c593d92aaefc486a04cb8c7ebbec5ee132b201353fc7244738a2bcbe5d8f474b260bb45bbf85e89fb [39m
+[:  2023-04-16 03:02:43 INFO signedTransaction: 0xf8af8201078506fc23ac008302d2a894ff6e94b43b6c52f64edb32926ad64a59039e835380b84440c10f1900000000000000000000000020781013faacce8f743befee48aef1420ca100e00000000000000000000000000000000000000000000000000000000000000fa0830150f6a0cd99c9a353fededf8abd0a98b3bf0cb1890aaca313e8c9740fbe38d26d261579a04106a9d4bbb30bb278276af02d78d6362c42a968c8d7860cb4d3e9dea5184249 [39m
+[:  2023-04-16 03:02:44 INFO signedTransaction: 0xf8af8201088506fc23ac008302d2a894ff6e94b43b6c52f64edb32926ad64a59039e835380b84465d9772400000000000000000000000020781013faacce8f743befee48aef1420ca100e00000000000000000000000000000000000000000000000000000000000000fa0830150f5a0e2423e3e264dda9e1102e8af70972aa2c995b5bcd9233620db729441bf089598a04bcb3e5a361feea8b1f77e62461a9276ce5863d1569558f5f235d7557964b351 [39m
+[:  2023-04-16 03:02:46 INFO Tx send result: {
+  nonce: 262,
+  gasPrice: BigNumber { _hex: '0x06fc23ac00', _isBigNumber: true },
+  gasLimit: BigNumber { _hex: '0x02d2a8', _isBigNumber: true },
+  to: '0xFF6E94b43b6c52f64eDb32926ad64a59039e8353',
+  value: BigNumber { _hex: '0x00', _isBigNumber: true },
+  data: '0xd1df306c00000000000000000000000020781013faacce8f743befee48aef1420ca100e00000000000000000000000000000000000000000000000000000000000000fa0',
+  chainId: 43113,
+  v: 86262,
+  r: '0x74484bfb6134b7df2f125d6ef32f909e13c9e1dadfe30cfd2c593d92aaefc486',
+  s: '0x4cb8c7ebbec5ee132b201353fc7244738a2bcbe5d8f474b260bb45bbf85e89fb',
+  from: '0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072',
+  hash: '0x95290647b12d4339bf985af25c15b5dbb87e48d024a93525dab048e9cd7d1bef',
+  type: null,
+  confirmations: 0,
+  wait: [Function (anonymous)]
+} [39m
+[:  2023-04-16 03:02:46 INFO Tx send result: {
+  nonce: 263,
+  gasPrice: BigNumber { _hex: '0x06fc23ac00', _isBigNumber: true },
+  gasLimit: BigNumber { _hex: '0x02d2a8', _isBigNumber: true },
+  to: '0xFF6E94b43b6c52f64eDb32926ad64a59039e8353',
+  value: BigNumber { _hex: '0x00', _isBigNumber: true },
+  data: '0x40c10f1900000000000000000000000020781013faacce8f743befee48aef1420ca100e00000000000000000000000000000000000000000000000000000000000000fa0',
+  chainId: 43113,
+  v: 86262,
+  r: '0xcd99c9a353fededf8abd0a98b3bf0cb1890aaca313e8c9740fbe38d26d261579',
+  s: '0x4106a9d4bbb30bb278276af02d78d6362c42a968c8d7860cb4d3e9dea5184249',
+  from: '0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072',
+  hash: '0xde6e3ed40047c75b90e8ab1b3bd8745a75924a153768792f50daf5e838fe3f28',
+  type: null,
+  confirmations: 0,
+  wait: [Function (anonymous)]
+} [39m
+[:  2023-04-16 03:02:47 INFO Tx send result: {
+  nonce: 264,
+  gasPrice: BigNumber { _hex: '0x06fc23ac00', _isBigNumber: true },
+  gasLimit: BigNumber { _hex: '0x02d2a8', _isBigNumber: true },
+  to: '0xFF6E94b43b6c52f64eDb32926ad64a59039e8353',
+  value: BigNumber { _hex: '0x00', _isBigNumber: true },
+  data: '0x65d9772400000000000000000000000020781013faacce8f743befee48aef1420ca100e00000000000000000000000000000000000000000000000000000000000000fa0',
+  chainId: 43113,
+  v: 86261,
+  r: '0xe2423e3e264dda9e1102e8af70972aa2c995b5bcd9233620db729441bf089598',
+  s: '0x4bcb3e5a361feea8b1f77e62461a9276ce5863d1569558f5f235d7557964b351',
+  from: '0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072',
+  hash: '0x252ae8836d88a28ca5bbf2a58e7cdffa1a6b8916e37307f2c351d40b0d805f7d',
+  type: null,
+  confirmations: 0,
+  wait: [Function (anonymous)]
+} [39m
+[:  2023-04-16 03:02:47 DEBUG トランザクション送信成功 [39m
+[:  2023-04-16 03:02:47 INFO token送金用のAPI終了 [39m

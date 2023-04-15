@@ -162,6 +162,17 @@ app.post('/api/send', async(req, res) => {
       ];
       // push
       txs.push(tx);
+      // create tx info
+      tx = [
+        MyTokenABI, 
+        contractAddr.MYTOKEN_ADDRESS, 
+        "updateScore", 
+        [fromAddr, amount], 
+        RPC_URL, 
+        CHAIN_ID
+      ];
+      // push
+      txs.push(tx);
 
       // call sendBatchTxs function
       result = await sendBatchTx(txs).then((result) => resultCheck(result));

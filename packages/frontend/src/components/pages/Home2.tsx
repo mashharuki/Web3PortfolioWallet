@@ -20,6 +20,7 @@ import QrCodeReader from './../common/QrCodeReader';
 import { AppBar, Toolbar } from "@mui/material";
 import { cyan, indigo } from "@mui/material/colors";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import superAgent from "superagent";
 import { useQuery } from 'urql';
 import { useMyContext } from "../../Contexts";
@@ -59,6 +60,7 @@ const Home2 = (props: any) => {
   const [nfts, setNfts] = useState([]);
   const [isOpenQRCamera, setIsOpenQRCamera] = useState(false);
   
+  const navigate = useNavigate();
 
   // execute query
   const [result] = useQuery({ 
@@ -194,7 +196,7 @@ const Home2 = (props: any) => {
 
   // Token購入
   const buyToken = async () => {
-    handleOpen();
+    navigate("/buy");
   };
 
   // VCをアップロード
@@ -480,7 +482,7 @@ const Home2 = (props: any) => {
               >
                 <Button
                   variant="contained"
-                  onClick={buyToken}
+                  onClick={handleOpen}
                   sx={{
                     borderRadius: "8px",
                   }}

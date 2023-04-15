@@ -21,8 +21,10 @@ import Modal from "@mui/material/Modal";
 import Stack from "@mui/material/Stack";
 import Logo from "../assets/imgs/Logo_v3.png";
 import backgroundImage from "../assets/imgs/background.png";
+import Buy from "./pages/Buy";
 import Home1 from "./pages/Home1";
 import Home2 from "./pages/Home2";
+import Upload from "./pages/Upload";
 
 import { Client, Provider, cacheExchange, fetchExchange } from 'urql';
 import { GRAPHQL_API_ENDPOINT } from "./common/Constant";
@@ -270,6 +272,8 @@ function App() {
           <Route path="/" element={<AppContent currentAccount={currentAccount} setCurrentAccount={setCurrentAccount}/>} />
           <Route path="/home1" element={<Home1 currentAccount={currentAccount} fullDid={fullDid} setFullDid={setFullDid}/>} />
           <Route path="/home2" element={<Home2 currentAccount={currentAccount} fullDid={fullDid} setFullDid={setFullDid}/>} />
+          <Route path="/buy" element={<Buy currentAccount={currentAccount} />} />
+          <Route path="/upload" element={<Upload currentAccount={currentAccount} fullDid={fullDid} />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
       </Router>
