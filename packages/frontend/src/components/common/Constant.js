@@ -14,3 +14,5 @@ export const PINTABaseURL = 'https://api.pinata.cloud';
 export const PINTAGatewayURL = 'https://gateway.pinata.cloud/ipfs';
 // width threshold
 export const WIDTH_THRESHOLD = 768;
+// GraphQL API Endpoint
+export const GRAPHQL_API_ENDPOINT = "https://api.studio.thegraph.com/query/44992/subgraph4/v0.0.2";
