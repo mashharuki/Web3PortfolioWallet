@@ -7,14 +7,13 @@ import TextField from "@mui/material/TextField";
 import { indigo } from "@mui/material/colors";
 import { useEffect, useState } from "react";
 import { useMyContext } from "../../Contexts";
-import "./../../assets/css/App.css";
-//import GroupButtons from "../common/GroupButtons";
 import Logo from "../../assets/imgs/Logo_v3.png";
 import {
   getDid,
   getRegisterStatus,
   getTokenBalanceOf,
 } from "../hooks/UseContract";
+import "./../../assets/css/App.css";
 //
 import { useNavigate } from "react-router-dom";
 

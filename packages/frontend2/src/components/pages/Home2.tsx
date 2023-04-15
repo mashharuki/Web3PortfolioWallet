@@ -13,21 +13,34 @@ import TextField from "@mui/material/TextField";
 
 import { AppBar, Toolbar } from "@mui/material";
 import { cyan, indigo } from "@mui/material/colors";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import superAgent from "superagent";
+import { useQuery } from 'urql';
 import { useMyContext } from "../../Contexts";
-import { baseURL } from "../common/Constant";
-import "./../../assets/css/App.css";
-//import GroupButtons from "../common/GroupButtons";
 import Logo from "../../assets/imgs/Logo_v3.png";
+import getUserInfoQuery from "../../graphql/getUserInfo";
+import { baseURL } from "../common/Constant";
 import {
   getTokenBalanceOf
 } from "../hooks/UseContract";
+import "./../../assets/css/App.css";
 
 /**
  * Homeコンポーネント
  */
 const Home2 = (props: any) => {
+  // execute query
+  const [result] = useQuery({ 
+    query: getUserInfoQuery,
+    variables: { 
+      addr: "0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072",
+      did: "did:ion:er....rer"
+    }
+  });
+  // get indexed data
+  const { data, fetching, error } = result;
+  console.log(`respose:${JSON.stringify(data)}`);
+  console.log(`did:${data}`)
   
   // create contract
   const {
@@ -169,17 +182,6 @@ const Home2 = (props: any) => {
   let SocialScore = 100;
   const thisMinWidth = 300;
 
-  useEffect(() => {
-    getBalance();
-
-    window.addEventListener(`resize`, updateWidth, {
-      capture: false,
-      passive: true,
-    });
-
-    return () => window.removeEventListener(`resize`, updateWidth);
-  }, []);
-
   return (
     <>
       <AppBar position="static" sx={{ backgroundColor: "primary.main" }}>
@@ -226,6 +228,38 @@ const Home2 = (props: any) => {
               <InputLabel htmlFor="inputYourDID">Your DID:</InputLabel>
               <TextField
                 id="inputYourDID"
+                type="text"
+                value="dgs"
+              />
+              <IconButton onClick={copy}>
+                <FileCopyIcon />
+              </IconButton>
+            </Box>
+            <Box>
+              <Button
+                variant="contained"
+                onClick={showQRCode}
+                sx={{
+                  borderRadius: "8px",
+                }}
+              >
+                Show Your QR Code
+              </Button>
+            </Box>
+          </Stack>
+          <Stack
+            spacing={1}
+            sx={{
+              backgroundColor: cyan[50],
+              borderRadius: "8pt",
+              padding: "8pt",
+              minWidth: { thisMinWidth },
+            }}
+          >
+            <Box display="flex" alignItems="center">
+              <InputLabel htmlFor="inputYourDID">Your Address:</InputLabel>
+              <TextField
+                id="inputYourAddress"
                 type="text"
                 value="dgs"
               />
@@ -395,6 +429,7 @@ const Home2 = (props: any) => {
           </FormControl>
         </Stack>
       </Stack>
+      {JSON.stringify(data)}
     </>
   );
 };
