@@ -1,52 +1,32 @@
-// mui関連のコンポーネントのインポート
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import { Container, Icon, Typography } from "@mui/material";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import InputLabel from "@mui/material/InputLabel";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
+import { Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
-import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
+import IconButton from "@mui/material/IconButton";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
 
-import { indigo, cyan } from "@mui/material/colors";
 import { AppBar, Toolbar } from "@mui/material";
+import { cyan, indigo } from "@mui/material/colors";
 import React, { useEffect, useState } from "react";
 import superAgent from "superagent";
-import ActionButton2 from "../common/ActionButton2";
-import LoadingIndicator from "../common/LoadingIndicator";
-import SendDialog from "../common/SendDialog";
-import "./../../assets/css/App.css";
 import { useMyContext } from "../../Contexts";
-import { baseURL, WIDTH_THRESHOLD } from "../common/Constant";
+import { baseURL } from "../common/Constant";
+import "./../../assets/css/App.css";
 //import GroupButtons from "../common/GroupButtons";
-import MainContainer from "../common/MainContainer";
-import QrCodeDialog from "../common/QrCodeDialog";
-import QrCodeReader from "../common/QrCodeReader";
+import { useQuery } from "urql";
+import Logo from "../../assets/imgs/Logo_v3.png";
+import getUserInfoQuery from "../../graphql/getUserInfo";
 import {
   getDid,
   getRegisterStatus,
   getTokenBalanceOf,
 } from "../hooks/UseContract";
-import Logo from "../../assets/imgs/Logo_v3.png";
-import LogoS from "../../assets/imgs/LogoSmall_v3.png";
-
-/**
- * StyledPaperコンポーネント
- */
-const StyledPaper = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(2),
-  maxWidth: 400,
-  //minHeight: 200,
-  //backgroundColor: "rgb(150, 144, 144)",
-}));
 
 /**
  * Homeコンポーネント
@@ -77,6 +57,18 @@ const Home2 = (props) => {
   const [amount, setAmount] = useState(0);
   const [open, setOpen] = useState(false);
   const [qrOpen, setQrOpen] = useState(false);
+
+  // execute query
+  const [result] = useQuery({ 
+    query: getUserInfoQuery,
+    variables: { 
+      addr: "0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072",
+      did: "did:ion:er....rer"
+    }
+  });
+  // get indexed data
+  const { data, fetching, error } = result;
+  console.log(`respose:${JSON.stringify(data)}`);
 
   /**
    * Register function
