@@ -8,7 +8,7 @@ const CONTROLLER = 'did:web:blockcerts-20230113.storage.googleapis.com';
 
 // AWS info
 const REGION_ID = "ap-northeast-1";
-const KEY_ID = "2f5733a1-e316-4aca-b0cd-bc10b71b56e1";
+const KEY_ID = "5abbc69c-39a9-48f6-98b2-066d9c798247";
 
 /**
  * VC Template

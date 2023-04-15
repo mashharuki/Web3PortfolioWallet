@@ -1,6 +1,6 @@
 # Web3PortfolioWallet
 
-<img src="./assets/logo/20230408__aicon_blue_500-500.png">
+<img src="./assets/logo/20230408__logo_blue_800-500.png">
 
 ## Concenpt
 
@@ -20,29 +20,36 @@
 - Sample Query
 
 ```gql
-query SampleQuery {
-  updateVcs {
-    blockNumber
+query MyQuery {
+  registereds(where: { to: "0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072" }) {
+    did
+    to
+    name
+  }
+  tokenCreateds {
+    symbol
+    name
+  }
+  balanceChangeds(
+    where: { to: "0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072" }
+    first: 1
+    orderDirection: desc
+    orderBy: blockTimestamp
+  ) {
+    to
+    balanceOf
+  }
+  updateVcs(where: { did: "did:ion:er....rer" }) {
     cid
     did
-    blockTimestamp
-    id
     name
-  }
-  updateScores {
-    id
-    score
-    to
-  }
-  registereds {
-    did
-    id
-    isRegistered
-    name
-    to
   }
 }
 ```
+
+## Wallet Address (private key is managed by AWS KMS)
+
+[0xF1ed44b80FA7B1f2688aA69518EeaBC0A41523b5](https://testnet.snowtrace.io/address/0xF1ed44b80FA7B1f2688aA69518EeaBC0A41523b5)
 
 ## Commands
 

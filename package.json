@@ -10,6 +10,8 @@
     "packages/*"
   ],
   "scripts": {
+    "start:api": "yarn workspace api start",
+    "test:kms": "yarn workspace api test:kms",
     "compile:contract": "yarn workspace backend compile",
     "test:contract": "yarn workspace backend test",
     "deploy:fuji": "yarn workspace backend deploy:fuji",
@@ -18,7 +20,6 @@
     "start:frontend": "yarn workspace frontend start",
     "build:frontend": "yarn workspace frontend build",
     "test:frontend": "yarn workspace frontend test",
-    "start:api": "yarn workspace api start",
     "subgraph:codegen": "yarn workspace subgraph codegen",
     "subgraph:build": "yarn workspace subgraph build",
     "subgraph:deploy": "yarn workspace subgraph deploy",
