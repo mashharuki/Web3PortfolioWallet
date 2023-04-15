@@ -2,7 +2,7 @@
 
 <img src="./assets/logo/20230408__logo_blue_800-500.png">
 
-## Concenpt
+## UX scenario
 
 <img src="./assets/imgs/ETHTokyo_UX.png">
 
