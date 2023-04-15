@@ -11,8 +11,8 @@ import { useMyContext } from "../../Contexts";
 import Logo from "../../assets/imgs/Logo_v3.png";
 import "./../../assets/css/App.css";
 import {
-      PINTABaseURL,
-      baseURL
+  PINTABaseURL,
+  baseURL
 } from "./../common/Constant";
 //
 import axios from 'axios';
@@ -53,14 +53,14 @@ const Buy = (props:any) => {
 
   const navigate = useNavigate();
 
-  
-  
+
 
       /**
        * upload VC file
        * @param {*} e event
        */
       const upload = async () => {
+            setIsLoading(true)
             // FormDataオブジェクトを生成
             let postData: any = new FormData();
             // APIを使って送信するリクエストパラメータを作成する。
@@ -92,33 +92,36 @@ const Buy = (props:any) => {
                         console.log("CID:", res.data.IpfsHash);
                         // VCのCID情報をIPFSに登録するAPIを呼び出す
                         superAgent
-                              .post(baseURL + '/api/registerIpfs')
-                              .query({
-                                    did: fullDid,
-                                    name: fileName,
-                                    cid: res.data.IpfsHash
-                              })
-                              .end(async(err, res) => {
-                                    if (err) {
-                                          console.log("VCのCID情報をIPFSに登録するAPI呼び出し中に失敗", err);
-                                          // popUpメソッドの呼び出し
-                                          popUp(false);
-                                          // フラグ OFF
-                                          setPendingFlg(false);
-                                          return err;
-                                    }
-                                    console.log(res);
-                                    // フラグ OFF
-                                    setPendingFlg(false);
-                                    // CIDを出力
-                                    popUp(true);
-                              });
+                          .post(baseURL + '/api/updateVc')
+                          .query({
+                                did: fullDid,
+                                name: fileName,
+                                cid: res.data.IpfsHash
+                          })
+                          .end(async(err, res) => {
+                            if (err) {
+                              console.log("VCのCID情報をIPFSに登録するAPI呼び出し中に失敗", err);
+                              // popUpメソッドの呼び出し
+                              popUp(false);
+                              // フラグ OFF
+                              setPendingFlg(false);
+                              setIsLoading(false);
+                              return err;
+                            }
+                            console.log(res);
+                            // フラグ OFF
+                            setPendingFlg(false);
+                            // CIDを出力
+                            popUp(true);
+                            setIsLoading(false);
+                          });
                   });
             } catch (e) {
                   // フラグ OFF
                   setPendingFlg(false);
                   console.error("upload failfull.....：", e);
                   popUp(false);
+                  setIsLoading(false)
                   alert("upload failfull.....");
             }
       };
@@ -240,6 +243,18 @@ const Buy = (props:any) => {
               return to home
             </Button>
           </Box>
+          {successFlg && (
+            /* 成功時のポップアップ */
+            <div id="toast" className={showToast ? "zero-show" : ""}>
+              <div id="secdesc">Trasaction Successfull!!</div>
+            </div>
+          )}
+          {failFlg && (
+            /* 失敗時のポップアップ */
+            <div id="toast" className={showToast ? "zero-show" : ""}>
+              <div id="desc">Trasaction failfull..</div>
+            </div>
+          )}
         </Stack>
       )}
     </>

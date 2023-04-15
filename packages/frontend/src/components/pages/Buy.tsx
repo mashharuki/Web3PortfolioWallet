@@ -12,7 +12,7 @@ import { useMyContext } from "../../Contexts";
 import Logo from "../../assets/imgs/Logo_v3.png";
 import "./../../assets/css/App.css";
 import {
-      baseURL
+  baseURL
 } from "./../common/Constant";
 //
 import { useNavigate } from "react-router-dom";
@@ -198,6 +198,18 @@ const Buy = (props:any) => {
               return to home
             </Button>
           </Box>
+          {successFlg && (
+            /* 成功時のポップアップ */
+            <div id="toast" className={showToast ? "zero-show" : ""}>
+              <div id="secdesc">Trasaction Successfull!!</div>
+            </div>
+          )}
+          {failFlg && (
+            /* 失敗時のポップアップ */
+            <div id="toast" className={showToast ? "zero-show" : ""}>
+              <div id="desc">Trasaction failfull..</div>
+            </div>
+          )}
         </Stack>
       )}
     </>

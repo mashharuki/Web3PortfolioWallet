@@ -66,8 +66,8 @@ const Home2 = (props: any) => {
   const [result] = useQuery({ 
     query: getUserInfoQuery,
     variables: { 
-      addr: "0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072",
-      did: "did:ion:er....rer"
+      addr: '0x' + currentAccount,
+      did: fullDid
     }
   });
   // get indexed data
@@ -191,7 +191,7 @@ const Home2 = (props: any) => {
 
   // 友だちを探す
   const searchFriend = async () => {
-    alert("友だちを探します");
+    alert("find your friend DNS");
   };
 
   // Token購入
@@ -201,7 +201,7 @@ const Home2 = (props: any) => {
 
   // VCをアップロード
   const uploadYourVC = async () => {
-    alert("VCをアップロードします");
+    navigate("/upload");
   };
 
   /**
@@ -569,6 +569,18 @@ const Home2 = (props: any) => {
                 </Select>
               </FormControl>
             </Stack>
+            {successFlg && (
+              /* 成功時のポップアップ */
+              <div id="toast" className={showToast ? "zero-show" : ""}>
+                <div id="secdesc">Trasaction Successfull!!</div>
+              </div>
+            )}
+            {failFlg && (
+              /* 失敗時のポップアップ */
+              <div id="toast" className={showToast ? "zero-show" : ""}>
+                <div id="desc">Trasaction failfull..</div>
+              </div>
+            )}
           </Stack>
         )}
         </>

@@ -1088,3 +1088,301 @@
 } [39m
 [:  2023-04-16 03:02:47 DEBUG トランザクション送信成功 [39m
 [:  2023-04-16 03:02:47 INFO token送金用のAPI終了 [39m
+[:  2023-04-16 04:09:47 INFO updateVc API start [39m
+[:  2023-04-16 04:09:50 INFO Tx send result: {
+  nonce: 265,
+  gasPrice: BigNumber { _hex: '0x746a528800', _isBigNumber: true },
+  gasLimit: BigNumber { _hex: '0x0dbba0', _isBigNumber: true },
+  to: '0x8eD85ab44b29286D878492da06c862770A078176',
+  value: BigNumber { _hex: '0x00', _isBigNumber: true },
+  data: '0xe5b0ef9b000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000c0000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000366469643a696f6e3a45694472677941415a4f2d37385444306145534b445f355531444146397256504848586a7345446132344c722d7700000000000000000000000000000000000000000000000000000000000000000000000000000000000b736d61706c652e6a736f6e000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003b6261666b7265696473776e646f717064706c74687862796e767a7878357777336662686e6f3534357971716e33747032356c7477776463776e67750000000000',
+  chainId: 43113,
+  v: 86262,
+  r: '0xc667248c0041cc05587192a5b219775c52c017a9956dd5b64eddb166942ecae2',
+  s: '0x2471b917d7d3d1629ccb2650138d88607c004e7486ea49547cd780d0d3680cee',
+  from: '0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072',
+  hash: '0x04ef7603d4a4d68d4649ef470b8c17ab23ac80e8150adc551da319272aa2da57',
+  type: null,
+  confirmations: 0,
+  wait: [Function (anonymous)]
+} [39m
+[:  2023-04-16 04:09:50 DEBUG trasaction success!! [39m
+[:  2023-04-16 04:09:50 INFO updateVc API end [39m
+[:  2023-04-16 04:09:50 INFO DID: did:ion:EiDrgyAAZO-78TD0aESKD_5U1DAF9rVPHHXjsEDa24Lr-w [39m
+[:  2023-04-16 04:09:50 INFO CID: bafkreidswndoqpdplthxbynvzxx5ww3fbhno545yqqn3tp25ltwwdcwngu [39m
+[:  2023-04-16 04:51:25 DEBUG Payment API開始 [39m
+[:  2023-04-16 04:51:26 DEBUG Payment API終了 [39m
+[:  2023-04-16 04:51:28 INFO 発行用のAPI開始 [39m
+[:  2023-04-16 04:51:30 INFO Tx send result: {
+  nonce: 266,
+  gasPrice: BigNumber { _hex: '0x746a528800', _isBigNumber: true },
+  gasLimit: BigNumber { _hex: '0x0dbba0', _isBigNumber: true },
+  to: '0xFF6E94b43b6c52f64eDb32926ad64a59039e8353',
+  value: BigNumber { _hex: '0x00', _isBigNumber: true },
+  data: '0x40c10f1900000000000000000000000020781013faacce8f743befee48aef1420ca100e00000000000000000000000000000000000000000000000000000000000009c40',
+  chainId: 43113,
+  v: 86262,
+  r: '0x99589787f180bcdc6bdf65b2be6904b68d00c98c1cb99f7ba90883b47a316fb5',
+  s: '0x0ef08af6f9cdc2b9204746056f1df30baa35f7b0093da111488a157453eefa3a',
+  from: '0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072',
+  hash: '0xde24b052684f352ac0387fc85c2cf173eb92c77b72dd5dc85a11dca1ff772e72',
+  type: null,
+  confirmations: 0,
+  wait: [Function (anonymous)]
+} [39m
+[:  2023-04-16 04:51:30 DEBUG トランザクション送信成功 [39m
+[:  2023-04-16 04:51:30 INFO 発行用のAPI終了 [39m
+[:  2023-04-16 04:51:50 INFO token送金用のAPI開始 [39m
+[:  2023-04-16 04:51:50 INFO from: did:ion:EiDrgyAAZO-78TD0aESKD_5U1DAF9rVPHHXjsEDa24Lr-w [39m
+[:  2023-04-16 04:51:50 INFO to: did:ion:er....rer [39m
+[:  2023-04-16 04:51:50 INFO amount: 450 [39m
+[:  2023-04-16 04:51:54 INFO fromAddr: 0x20781013FAACce8F743BefEe48aef1420CA100E0 [39m
+[:  2023-04-16 04:51:54 INFO receiveAddr: 0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072 [39m
+[:  2023-04-16 04:51:54 INFO balance of fromAddr: 300000000004040000 [39m
+[:  2023-04-16 04:51:55 INFO signedTransaction: 0xf8af82010b8506fc23ac008302d2a894ff6e94b43b6c52f64edb32926ad64a59039e835380b844d1df306c00000000000000000000000020781013faacce8f743befee48aef1420ca100e000000000000000000000000000000000000000000000000000000000000001c2830150f6a0c8123696048cf89877a4b3265bc6b1df421ddc0a3b080b3edb2961e1ac6a3919a030e589161065307d042718bfb517bb9f53f7a1fbb75b66b9987905023f24d51b [39m
+[:  2023-04-16 04:51:56 INFO signedTransaction: 0xf8af82010c8506fc23ac008302d2a894ff6e94b43b6c52f64edb32926ad64a59039e835380b84440c10f1900000000000000000000000051908f598a5e0d8f1a3babfa6df76f9704dad07200000000000000000000000000000000000000000000000000000000000001c2830150f6a0a85110cfe25e18f793670099868f73981e599dda35fd594192114a1a5d336b8ea00fab5a0c8e407f253122ab8434007ad8a86e01707bc3aeb8966edfab27311694 [39m
+[:  2023-04-16 04:51:57 INFO signedTransaction: 0xf8af82010d8506fc23ac008302d2a894ff6e94b43b6c52f64edb32926ad64a59039e835380b84465d9772400000000000000000000000020781013faacce8f743befee48aef1420ca100e000000000000000000000000000000000000000000000000000000000000001c2830150f6a031c3faf694e5ef30f4d65c3213d7ae374c873f0932f98d55dcc7dccde5238a5da07563f64beec09ebbd8b0470eda88a02c2d64abf417a4a42cdc6dfe2e5ab6d26f [39m
+[:  2023-04-16 04:51:58 INFO Tx send result: {
+  nonce: 267,
+  gasPrice: BigNumber { _hex: '0x06fc23ac00', _isBigNumber: true },
+  gasLimit: BigNumber { _hex: '0x02d2a8', _isBigNumber: true },
+  to: '0xFF6E94b43b6c52f64eDb32926ad64a59039e8353',
+  value: BigNumber { _hex: '0x00', _isBigNumber: true },
+  data: '0xd1df306c00000000000000000000000020781013faacce8f743befee48aef1420ca100e000000000000000000000000000000000000000000000000000000000000001c2',
+  chainId: 43113,
+  v: 86262,
+  r: '0xc8123696048cf89877a4b3265bc6b1df421ddc0a3b080b3edb2961e1ac6a3919',
+  s: '0x30e589161065307d042718bfb517bb9f53f7a1fbb75b66b9987905023f24d51b',
+  from: '0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072',
+  hash: '0x4dab7379cfa358e7f3717d9582b15e6664969af3c6295ad3c183c8f25b7ea7df',
+  type: null,
+  confirmations: 0,
+  wait: [Function (anonymous)]
+} [39m
+[:  2023-04-16 04:51:59 INFO Tx send result: {
+  nonce: 268,
+  gasPrice: BigNumber { _hex: '0x06fc23ac00', _isBigNumber: true },
+  gasLimit: BigNumber { _hex: '0x02d2a8', _isBigNumber: true },
+  to: '0xFF6E94b43b6c52f64eDb32926ad64a59039e8353',
+  value: BigNumber { _hex: '0x00', _isBigNumber: true },
+  data: '0x40c10f1900000000000000000000000051908f598a5e0d8f1a3babfa6df76f9704dad07200000000000000000000000000000000000000000000000000000000000001c2',
+  chainId: 43113,
+  v: 86262,
+  r: '0xa85110cfe25e18f793670099868f73981e599dda35fd594192114a1a5d336b8e',
+  s: '0x0fab5a0c8e407f253122ab8434007ad8a86e01707bc3aeb8966edfab27311694',
+  from: '0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072',
+  hash: '0x059a57abfafe480bc200cde29768808023dac6668dd4fb7048921492d94af98f',
+  type: null,
+  confirmations: 0,
+  wait: [Function (anonymous)]
+} [39m
+[:  2023-04-16 04:51:59 INFO Tx send result: {
+  nonce: 269,
+  gasPrice: BigNumber { _hex: '0x06fc23ac00', _isBigNumber: true },
+  gasLimit: BigNumber { _hex: '0x02d2a8', _isBigNumber: true },
+  to: '0xFF6E94b43b6c52f64eDb32926ad64a59039e8353',
+  value: BigNumber { _hex: '0x00', _isBigNumber: true },
+  data: '0x65d9772400000000000000000000000020781013faacce8f743befee48aef1420ca100e000000000000000000000000000000000000000000000000000000000000001c2',
+  chainId: 43113,
+  v: 86262,
+  r: '0x31c3faf694e5ef30f4d65c3213d7ae374c873f0932f98d55dcc7dccde5238a5d',
+  s: '0x7563f64beec09ebbd8b0470eda88a02c2d64abf417a4a42cdc6dfe2e5ab6d26f',
+  from: '0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072',
+  hash: '0xe7181c725a39dea471bfa09fd44125112feb5e008395cf1e2128d73f4b264f5b',
+  type: null,
+  confirmations: 0,
+  wait: [Function (anonymous)]
+} [39m
+[:  2023-04-16 04:51:59 DEBUG トランザクション送信成功 [39m
+[:  2023-04-16 04:51:59 INFO token送金用のAPI終了 [39m
+[:  2023-04-16 05:30:50 INFO token送金用のAPI開始 [39m
+[:  2023-04-16 05:30:50 INFO from: did:ion:EiDrgyAAZO-78TD0aESKD_5U1DAF9rVPHHXjsEDa24Lr-w [39m
+[:  2023-04-16 05:30:50 INFO to: did:ion:er....rer [39m
+[:  2023-04-16 05:30:50 INFO amount: 500 [39m
+[:  2023-04-16 05:30:53 INFO fromAddr: 0x20781013FAACce8F743BefEe48aef1420CA100E0 [39m
+[:  2023-04-16 05:30:53 INFO receiveAddr: 0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072 [39m
+[:  2023-04-16 05:30:53 INFO balance of fromAddr: 300000000004039550 [39m
+[:  2023-04-16 05:30:55 INFO signedTransaction: 0xf8af82010e8506fc23ac008302d2a894ff6e94b43b6c52f64edb32926ad64a59039e835380b844d1df306c00000000000000000000000020781013faacce8f743befee48aef1420ca100e000000000000000000000000000000000000000000000000000000000000001f4830150f6a047e1e1431e93b3d3b27a5f823f71b133105625d61ce465ea7c77c170db7958f9a008945eadb4dff3db62660c1dc0a18dcfc6523c2e4bf8557bb24e95e05c61f566 [39m
+[:  2023-04-16 05:30:57 INFO signedTransaction: 0xf8af82010f8506fc23ac008302d2a894ff6e94b43b6c52f64edb32926ad64a59039e835380b84440c10f1900000000000000000000000051908f598a5e0d8f1a3babfa6df76f9704dad07200000000000000000000000000000000000000000000000000000000000001f4830150f5a077adf76dad2c8c7ddeeeefefca1170061323f7c87b06bfda7a3cf49ecda8e3c8a0222c1aed462345ab719dc1ed6fa541f4117a596ecbc4a68569b88b3dd110164b [39m
+[:  2023-04-16 05:30:58 INFO signedTransaction: 0xf8af8201108506fc23ac008302d2a894ff6e94b43b6c52f64edb32926ad64a59039e835380b84465d9772400000000000000000000000020781013faacce8f743befee48aef1420ca100e000000000000000000000000000000000000000000000000000000000000001f4830150f5a0c810d37787a008203b0aee6c2ac88ee2679b2c676b6fe3cee5981c5c89215967a03e76c35087b1c105a9b101f4cf3fed9156a07f5b18315636df961c5ec07d436e [39m
+[:  2023-04-16 05:30:59 INFO Tx send result: {
+  nonce: 270,
+  gasPrice: BigNumber { _hex: '0x06fc23ac00', _isBigNumber: true },
+  gasLimit: BigNumber { _hex: '0x02d2a8', _isBigNumber: true },
+  to: '0xFF6E94b43b6c52f64eDb32926ad64a59039e8353',
+  value: BigNumber { _hex: '0x00', _isBigNumber: true },
+  data: '0xd1df306c00000000000000000000000020781013faacce8f743befee48aef1420ca100e000000000000000000000000000000000000000000000000000000000000001f4',
+  chainId: 43113,
+  v: 86262,
+  r: '0x47e1e1431e93b3d3b27a5f823f71b133105625d61ce465ea7c77c170db7958f9',
+  s: '0x08945eadb4dff3db62660c1dc0a18dcfc6523c2e4bf8557bb24e95e05c61f566',
+  from: '0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072',
+  hash: '0x11f660c93b1879ee21e93905f6fc1dc1a76ebdbf10e84c0c66be3d105b4c1b01',
+  type: null,
+  confirmations: 0,
+  wait: [Function (anonymous)]
+} [39m
+[:  2023-04-16 05:30:59 INFO Tx send result: {
+  nonce: 271,
+  gasPrice: BigNumber { _hex: '0x06fc23ac00', _isBigNumber: true },
+  gasLimit: BigNumber { _hex: '0x02d2a8', _isBigNumber: true },
+  to: '0xFF6E94b43b6c52f64eDb32926ad64a59039e8353',
+  value: BigNumber { _hex: '0x00', _isBigNumber: true },
+  data: '0x40c10f1900000000000000000000000051908f598a5e0d8f1a3babfa6df76f9704dad07200000000000000000000000000000000000000000000000000000000000001f4',
+  chainId: 43113,
+  v: 86261,
+  r: '0x77adf76dad2c8c7ddeeeefefca1170061323f7c87b06bfda7a3cf49ecda8e3c8',
+  s: '0x222c1aed462345ab719dc1ed6fa541f4117a596ecbc4a68569b88b3dd110164b',
+  from: '0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072',
+  hash: '0xc38ed980fc0deebd87f63a46461189bba0bfe5723d8ba9be0bb65f7b0e0f2bbb',
+  type: null,
+  confirmations: 0,
+  wait: [Function (anonymous)]
+} [39m
+[:  2023-04-16 05:30:59 INFO Tx send result: {
+  nonce: 272,
+  gasPrice: BigNumber { _hex: '0x06fc23ac00', _isBigNumber: true },
+  gasLimit: BigNumber { _hex: '0x02d2a8', _isBigNumber: true },
+  to: '0xFF6E94b43b6c52f64eDb32926ad64a59039e8353',
+  value: BigNumber { _hex: '0x00', _isBigNumber: true },
+  data: '0x65d9772400000000000000000000000020781013faacce8f743befee48aef1420ca100e000000000000000000000000000000000000000000000000000000000000001f4',
+  chainId: 43113,
+  v: 86261,
+  r: '0xc810d37787a008203b0aee6c2ac88ee2679b2c676b6fe3cee5981c5c89215967',
+  s: '0x3e76c35087b1c105a9b101f4cf3fed9156a07f5b18315636df961c5ec07d436e',
+  from: '0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072',
+  hash: '0xdd8b06b56bc716d79bd1cb68c61b77b10a4e9d002f8e73048217465c45b97912',
+  type: null,
+  confirmations: 0,
+  wait: [Function (anonymous)]
+} [39m
+[:  2023-04-16 05:30:59 DEBUG トランザクション送信成功 [39m
+[:  2023-04-16 05:30:59 INFO token送金用のAPI終了 [39m
+[:  2023-04-16 05:49:02 INFO DID作成用のAPI開始 [39m
+[:  2023-04-16 05:49:04 INFO response: {
+  "@context": "https://w3id.org/did-resolution/v1",
+  "didDocument": {
+    "id": "did:ion:EiBecVKS_QjSpm0D5uvFUMYTCrILCnC_cn18Jz4c50lyAQ",
+    "@context": [
+      "https://www.w3.org/ns/did/v1",
+      {
+        "@base": "did:ion:EiBecVKS_QjSpm0D5uvFUMYTCrILCnC_cn18Jz4c50lyAQ"
+      }
+    ],
+    "service": [
+      {
+        "id": "#idq",
+        "type": "LinkedDomains",
+        "serviceEndpoint": "http://example/"
+      }
+    ],
+    "verificationMethod": [
+      {
+        "id": "#key-1",
+        "controller": "did:ion:EiBecVKS_QjSpm0D5uvFUMYTCrILCnC_cn18Jz4c50lyAQ",
+        "type": "EcdsaSecp256k1VerificationKey2019",
+        "publicKeyJwk": {
+          "kty": "EC",
+          "crv": "secp256k1",
+          "x": "6-YnOE_cepcaXeUVPp9wKVEJJgFckOUoa-lZq0gwVM8",
+          "y": "xMLdqMewqE3_VubaR23ZxN0-jh-LLFM_P_Ttk3bR5L4"
+        }
+      }
+    ],
+    "authentication": [
+      "#key-1"
+    ]
+  },
+  "didDocumentMetadata": {
+    "method": {
+      "published": false,
+      "recoveryCommitment": "EiBc2lRuHEjhIpQjEJg1SrJKVDK1btRtn1s1eLZ9yPvvYA",
+      "updateCommitment": "EiAcQgudtaRjuPEdhEGBOyPNwhNyfehlJJRq9WRnyF1B6g"
+    },
+    "canonicalId": "did:ion:EiBecVKS_QjSpm0D5uvFUMYTCrILCnC_cn18Jz4c50lyAQ"
+  }
+} [39m
+[:  2023-04-16 05:49:07 INFO uploadFileToIpfs result: {
+  IpfsHash: 'Qmd63inARcE8ZbmFN2Tx8Jy6prpvwxk7WRVnLa6EX44Ma9',
+  PinSize: 1225,
+  Timestamp: '2023-04-15T20:49:07.283Z'
+} [39m
+[:  2023-04-16 05:49:10 INFO Tx send result: {
+  nonce: 273,
+  gasPrice: BigNumber { _hex: '0x746a528800', _isBigNumber: true },
+  gasLimit: BigNumber { _hex: '0x0dbba0', _isBigNumber: true },
+  to: '0x8eD85ab44b29286D878492da06c862770A078176',
+  value: BigNumber { _hex: '0x00', _isBigNumber: true },
+  data: '0x5664d69c000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000004d6f53b9dfcda3dabdb6d82d46857039f8a769eb0000000000000000000000000000000000000000000000000000000000000007686172756b69320000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000366469643a696f6e3a4569426563564b535f516a53706d304435757646554d59544372494c436e435f636e31384a7a346335306c79415100000000000000000000',
+  chainId: 43113,
+  v: 86262,
+  r: '0x80d01a0f45d10fedfcabcb1a38bb222092ca85f089599aa6702e5316a079bf71',
+  s: '0x3e467183410831bebd39e3de2b982f05e19f797789c3358c1fa4028c11aa703c',
+  from: '0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072',
+  hash: '0x59cafa40012be1f7eda83ff2b713c2fff237984f4477d40bcd7b1fd451d61201',
+  type: null,
+  confirmations: 0,
+  wait: [Function (anonymous)]
+} [39m
+[:  2023-04-16 05:49:10 DEBUG トランザクション送信成功 [39m
+[:  2023-04-16 05:49:10 INFO DID作成用のAPI終了 [39m
+[:  2023-04-16 05:49:10 INFO DID: did:ion:EiBecVKS_QjSpm0D5uvFUMYTCrILCnC_cn18Jz4c50lyAQ [39m
+[:  2023-04-16 05:49:10 INFO 発行用のAPI開始 [39m
+[:  2023-04-16 05:49:12 ERROR Tx send error: Error: nonce has already been used [ See: https://links.ethers.org/v5-errors-NONCE_EXPIRED ] (error={"reason":"processing response error","code":"SERVER_ERROR","body":"{\"jsonrpc\":\"2.0\",\"id\":48,\"error\":{\"code\":-32000,\"message\":\"nonce too low: address 0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072 current nonce (274) \\u003e tx nonce (273)\"}}\n","error":{"code":-32000},"requestBody":"{\"method\":\"eth_sendRawTransaction\",\"params\":[\"0xf8af82011185746a528800830dbba094ff6e94b43b6c52f64edb32926ad64a59039e835380b84440c10f190000000000000000000000004d6f53b9dfcda3dabdb6d82d46857039f8a769eb0000000000000000000000000000000000000000000000000000000000002710830150f6a0754eecbdbbda630ab93b5ab69d6e1d3329b13807776b0997a0ffa4a25de2559ca03231f7ab363a84aaaad4f02a9222e87d20c9f164d1fcd37c670c131d131da19a\"],\"id\":48,\"jsonrpc\":\"2.0\"}","requestMethod":"POST","url":"https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"}, method="sendTransaction", transaction="0xf8af82011185746a528800830dbba094ff6e94b43b6c52f64edb32926ad64a59039e835380b84440c10f190000000000000000000000004d6f53b9dfcda3dabdb6d82d46857039f8a769eb0000000000000000000000000000000000000000000000000000000000002710830150f6a0754eecbdbbda630ab93b5ab69d6e1d3329b13807776b0997a0ffa4a25de2559ca03231f7ab363a84aaaad4f02a9222e87d20c9f164d1fcd37c670c131d131da19a", code=NONCE_EXPIRED, version=providers/5.7.2)
+    at Logger.makeError (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/logger/lib/index.js:238:21)
+    at Logger.throwError (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/logger/lib/index.js:247:20)
+    at checkError (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/providers/lib/json-rpc-provider.js:152:16)
+    at JsonRpcProvider.<anonymous> (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/providers/lib/json-rpc-provider.js:751:47)
+    at step (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/providers/lib/json-rpc-provider.js:48:23)
+    at Object.throw (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/providers/lib/json-rpc-provider.js:29:53)
+    at rejected (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/providers/lib/json-rpc-provider.js:21:65)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+  reason: 'nonce has already been used',
+  code: 'NONCE_EXPIRED',
+  error: Error: processing response error (body="{\"jsonrpc\":\"2.0\",\"id\":48,\"error\":{\"code\":-32000,\"message\":\"nonce too low: address 0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072 current nonce (274) \\u003e tx nonce (273)\"}}\n", error={"code":-32000}, requestBody="{\"method\":\"eth_sendRawTransaction\",\"params\":[\"0xf8af82011185746a528800830dbba094ff6e94b43b6c52f64edb32926ad64a59039e835380b84440c10f190000000000000000000000004d6f53b9dfcda3dabdb6d82d46857039f8a769eb0000000000000000000000000000000000000000000000000000000000002710830150f6a0754eecbdbbda630ab93b5ab69d6e1d3329b13807776b0997a0ffa4a25de2559ca03231f7ab363a84aaaad4f02a9222e87d20c9f164d1fcd37c670c131d131da19a\"],\"id\":48,\"jsonrpc\":\"2.0\"}", requestMethod="POST", url="https://ava-testnet.public.blastapi.io/ext/bc/C/rpc", code=SERVER_ERROR, version=web/5.7.1)
+      at Logger.makeError (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/logger/lib/index.js:238:21)
+      at Logger.throwError (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/logger/lib/index.js:247:20)
+      at /Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/web/lib/index.js:313:32
+      at step (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/web/lib/index.js:33:23)
+      at Object.next (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/web/lib/index.js:14:53)
+      at fulfilled (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/web/lib/index.js:5:58)
+      at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+    reason: 'processing response error',
+    code: 'SERVER_ERROR',
+    body: '{"jsonrpc":"2.0","id":48,"error":{"code":-32000,"message":"nonce too low: address 0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072 current nonce (274) \\u003e tx nonce (273)"}}\n',
+    error: Error: nonce too low: address 0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072 current nonce (274) > tx nonce (273)
+        at getResult (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/providers/lib/json-rpc-provider.js:191:21)
+        at processJsonFunc (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/web/lib/index.js:356:22)
+        at /Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/web/lib/index.js:288:46
+        at step (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/web/lib/index.js:33:23)
+        at Object.next (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/web/lib/index.js:14:53)
+        at fulfilled (/Users/harukikondo/git/Web3PortfolioWallet/node_modules/@ethersproject/web/lib/index.js:5:58)
+        at process.processTicksAndRejections (node:internal/process/task_queues:95:5) {
+      code: -32000,
+      data: undefined
+    },
+    requestBody: '{"method":"eth_sendRawTransaction","params":["0xf8af82011185746a528800830dbba094ff6e94b43b6c52f64edb32926ad64a59039e835380b84440c10f190000000000000000000000004d6f53b9dfcda3dabdb6d82d46857039f8a769eb0000000000000000000000000000000000000000000000000000000000002710830150f6a0754eecbdbbda630ab93b5ab69d6e1d3329b13807776b0997a0ffa4a25de2559ca03231f7ab363a84aaaad4f02a9222e87d20c9f164d1fcd37c670c131d131da19a"],"id":48,"jsonrpc":"2.0"}',
+    requestMethod: 'POST',
+    url: 'https://ava-testnet.public.blastapi.io/ext/bc/C/rpc'
+  },
+  method: 'sendTransaction',
+  transaction: {
+    nonce: 273,
+    gasPrice: BigNumber { _hex: '0x746a528800', _isBigNumber: true },
+    gasLimit: BigNumber { _hex: '0x0dbba0', _isBigNumber: true },
+    to: '0xFF6E94b43b6c52f64eDb32926ad64a59039e8353',
+    value: BigNumber { _hex: '0x00', _isBigNumber: true },
+    data: '0x40c10f190000000000000000000000004d6f53b9dfcda3dabdb6d82d46857039f8a769eb0000000000000000000000000000000000000000000000000000000000002710',
+    chainId: 43113,
+    v: 86262,
+    r: '0x754eecbdbbda630ab93b5ab69d6e1d3329b13807776b0997a0ffa4a25de2559c',
+    s: '0x3231f7ab363a84aaaad4f02a9222e87d20c9f164d1fcd37c670c131d131da19a',
+    from: '0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072',
+    hash: '0x25daf834c9b37995ef2a0bfee0a800d3a7887ba421493d190355b0839e64fcfb',
+    type: null,
+    confirmations: 0
+  },
+  transactionHash: '0x25daf834c9b37995ef2a0bfee0a800d3a7887ba421493d190355b0839e64fcfb'
+} [39m
+[:  2023-04-16 05:49:12 ERROR トランザクション送信失敗 [39m
+[:  2023-04-16 05:49:12 INFO 発行用のAPI終了 [39m
