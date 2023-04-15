@@ -29,7 +29,8 @@ import backgroundImage from "../assets/imgs/background.png";
 import Home1 from "./pages/Home1";
 import Home2 from "./pages/Home2";
 
-import { Client, Provider, cacheExchange, fetchExchange } from 'urql';
+import { Client, Provider, cacheExchange, fetchExchange, useQuery } from 'urql';
+import getUserInfoQuery from "../graphql/getUserInfo";
 import { GRAPHQL_API_ENDPOINT } from "./common/Constant";
 
 // create graphQL client
@@ -268,6 +269,18 @@ function AppContent() {
  * @returns 
  */
 function App() {
+  // execute query
+  const [result] = useQuery({ 
+    query: getUserInfoQuery,
+    variables: { 
+      addr: "0x51908F598A5e0d8F1A3bAbFa6DF76F9704daD072",
+      did: "did:ion:er....rer"
+    }
+  });
+  // get indexed data
+  const { data, fetching, error } = result;
+  console.log(`respose:${JSON.stringify(data)}`);
+
   return (
     <div className="App">
       <Router>
