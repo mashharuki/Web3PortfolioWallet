@@ -8,11 +8,11 @@
 
 ## Presentation Slides
 
-<img src="./assets/imgs/Web3Portfolio1.png">
-<img src="./assets/imgs/Web3Portfolio2.png">
-<img src="./assets/imgs/Web3Portfolio3.png">
-<img src="./assets/imgs/Web3Portfolio4.png">
-<img src="./assets/imgs/Web3Portfolio15.png">
+|<img src="./assets/imgs/Web3PortfolioWallet1.png">|
+|<img src="./assets/imgs/Web3PortfolioWallet2.png">|
+|<img src="./assets/imgs/Web3PortfolioWallet3.png">|
+|<img src="./assets/imgs/Web3PortfolioWallet4.png">|
+|<img src="./assets/imgs/Web3PortfolioWallet5.png">|
 
 ## deployed Smartcontract
 
