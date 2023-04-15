@@ -1,36 +1,43 @@
-import StartIcon from "@mui/icons-material/Start";
 import AppBar from "@mui/material/AppBar";
 import GlobalStyles from "@mui/material/GlobalStyles";
-import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import React, { useEffect } from "react";
 import {
+  Link,
   Route,
   BrowserRouter as Router,
   Routes,
-  Link,
   useNavigate,
 } from "react-router-dom";
 import { useMyContext } from "./../Contexts";
 import "./../assets/css/App.css";
-import ActionButton2 from "./common/ActionButton2";
 import Web3Menu from "./common/Web3Menu";
 import { connectWallet } from "./hooks/UseContract";
 import Home from "./pages/Home";
 import NoPage from "./pages/NoPage";
 import Verify from "./pages/Verify";
 //
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import Divider from "@mui/material/Divider";
-import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
+import Modal from "@mui/material/Modal";
+import Stack from "@mui/material/Stack";
 import Logo from "../assets/imgs/Logo_v3.png";
 import backgroundImage from "../assets/imgs/background.png";
 import Home1 from "./pages/Home1";
 import Home2 from "./pages/Home2";
+
+import { Client, Provider, cacheExchange, fetchExchange } from 'urql';
+import { GRAPHQL_API_ENDPOINT } from "./common/Constant";
+
+// create graphQL client
+const client = new Client({
+  url: GRAPHQL_API_ENDPOINT,
+  exchanges: [cacheExchange, fetchExchange],
+});
+
 
 /**
  * App Component
@@ -256,6 +263,10 @@ function AppContent() {
   );
 }
 
+/**
+ * App Component
+ * @returns 
+ */
 function App() {
   return (
     <div className="App">
@@ -272,4 +283,13 @@ function App() {
     </div>
   );
 }
-export default App;
+
+function Root() {
+  return (
+    <Provider value={client}>
+      <App />
+    </Provider>
+  );
+}
+
+export default Root;
