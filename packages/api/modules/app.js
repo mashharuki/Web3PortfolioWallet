@@ -78,29 +78,6 @@ app.post('/api/mintToken', async(req, res) => {
 });
     
 /**
- * Tokenの残高を取得するAPI
- * @param addr 残高を取得するアドレス
- */
-app.get('/api/balance/token', async(req, res) => {
-  logger.log("残高取得用のAPI開始");
-
-  var addr = req.query.addr;
-
-  // create wallet 
-  const wallet = createLocalSigner();
-  // create provider
-  const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
-  // create contract 
-  var contract = new ethers.Contract(contractAddr.MYTOKEN_ADDRESS, MyTokenABI, await provider.getSigner(wallet.address));
-
-  const balance = await contract.callStatic.balanceOf(addr);
-
-  logger.log("残高取得用のAPI終了");
-  res.set({ 'Access-Control-Allow-Origin': '*' });
-  res.json({ balance: balance });
-});
-    
-/**
  * Tokenを送金するAPI
  * @param from 送金元のDID
  * @param to 送金先のDID
@@ -180,6 +157,17 @@ app.post('/api/send', async(req, res) => {
         contractAddr.MYTOKEN_ADDRESS, 
         "mint", 
         [receiveAddr, amount], 
+        RPC_URL, 
+        CHAIN_ID
+      ];
+      // push
+      txs.push(tx);
+      // create tx info
+      tx = [
+        MyTokenABI, 
+        contractAddr.MYTOKEN_ADDRESS, 
+        "updateScore", 
+        [fromAddr, amount], 
         RPC_URL, 
         CHAIN_ID
       ];

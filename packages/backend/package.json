@@ -12,7 +12,7 @@
     "build": "npx truffle build",
     "deploy:goreli": "npx truffle migrate --network goreli",
     "deploy:sepolia": "npx truffle migrate --network sepolia",
-    "deploy:mumbai": "npx truffle migrate --network mumbai",
+    "deploy:mumbai": "npx truffle migrate --network mumbai --f 2 --to 2",
     "deploy:bsctest": "npx truffle migrate --network bsctest",
     "deploy:harmony": "npx truffle migrate --network harmony",
     "deploy:ftm": "npx truffle migrate --network ftm",

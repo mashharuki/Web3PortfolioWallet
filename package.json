@@ -15,6 +15,7 @@
     "compile:contract": "yarn workspace backend compile",
     "test:contract": "yarn workspace backend test",
     "deploy:fuji": "yarn workspace backend deploy:fuji",
+    "deploy:mumbai": "yarn workspace backend deploy:mumbai",
     "deploy:sepolia": "yarn workspace backend deploy:sepolia",
     "verify:fuji": "yarn workspace backend verify:fuji",
     "start:frontend": "yarn workspace frontend start",
