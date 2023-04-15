@@ -29,6 +29,7 @@ import {
 } from "../hooks/UseContract";
 import Logo from "../../assets/imgs/Logo_v3.png";
 import LogoS from "../../assets/imgs/LogoSmall_v3.png";
+import { useNavigate } from "react-router-dom";
 
 /**
  * StyledPaperコンポーネント
@@ -71,6 +72,8 @@ const Home1 = (props) => {
   const [amount, setAmount] = useState(0);
   const [open, setOpen] = useState(false);
   const [qrOpen, setQrOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   /**
    * Register function
@@ -126,7 +129,8 @@ const Home1 = (props) => {
         await checkStatus();
         setIsLoading(false);
       });
-    // Todo：DIDの登録が終わったらHome2に遷移する
+    // transition to Home2 after registering DID
+    navigate("/home2");
   };
 
   /**
