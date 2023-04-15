@@ -44,6 +44,15 @@ query MyQuery {
     did
     name
   }
+  updateScores(
+    first: 1
+    orderBy: blockTimestamp
+    orderDirection: desc
+    where: { to: "0x51908f598a5e0d8f1a3babfa6df76f9704dad072" }
+  ) {
+    to
+    score
+  }
 }
 ```
 

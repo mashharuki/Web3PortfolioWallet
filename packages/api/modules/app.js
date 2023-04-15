@@ -363,43 +363,6 @@ app.post("/create-payment-intent", async (req, res) => {
   logger.debug("Payment API終了");
 });
 
-/**
- * register VC API
- * @param did DID
- * @param name VC file name
- * @param cid CID情報
- */
-app.post("/api/registerIpfs", async (req, res) => {
-  logger.debug("Register Ipfs API開始");
-
-  // 
-  var did = req.query.did;
-  var name = req.query.name;
-  var cid = req.query.cid;
-  
-  // register to IPFS
-  var result = await sendTx(
-    FactoryABI,
-    contractAddr.FACTORY_ADDRESS, 
-    "updateVc", 
-    [did, name, cid], 
-    RPC_URL, 
-    CHAIN_ID
-  );
-
-  if(result == true) {
-    logger.debug("トランザクション送信成功");
-    logger.log("Register Ipfs API終了")
-    res.set({ 'Access-Control-Allow-Origin': '*' });
-    res.json({ result: 'success' });
-  } else {
-    logger.error("trasaction fail");
-    logger.log("Register Ipfs API終了")
-    res.set({ 'Access-Control-Allow-Origin': '*' });
-    res.json({ result: 'fail' });
-  }
-});
-
 module.exports = {
   app,
   logger
