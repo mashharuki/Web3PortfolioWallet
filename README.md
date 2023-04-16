@@ -22,7 +22,7 @@
 
 ### 3. Polygon - onPolygon in Public Pool Prize
 
-[0x04d72300c70ceb073f0950b3659766db616023f8](https://mumbai.polygonscan.com/address/0x04d72300c70ceb073f0950b3659766db616023f8)
+[0x04d72300c70ceb073f0950b3659766db616023f8](https://twitter.com/HARUKI05758694/status/1647386601755127811)
 
 ## deployed Smartcontract
 
