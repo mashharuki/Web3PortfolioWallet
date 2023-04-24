@@ -131,6 +131,7 @@ type DNSOwnershipTransferred @entity(immutable: true) {
 
 type Registered @entity(immutable: true) {
   id: Bytes!
+;
   to: Bytes! # address
   did: String! # string
   name: String! # string
