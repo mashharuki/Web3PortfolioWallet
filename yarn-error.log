@@ -1,0 +1,56 @@
+Arguments: 
+  /home/nabe/.nvm/versions/node/v16.18.0/bin/node /usr/share/yarn/bin/yarn.js
+
+PATH: 
+  /home/nabe/.nvm/versions/node/v16.18.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Python310/Scripts/:/mnt/c/Python310/:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files/PuTTY/:/mnt/c/Program Files (x86)/Common Files/Sony Shared/FeliCaLibrary:/mnt/c/Program Files/Common Files/Sony Shared/FeliCaLibrary:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/nodejs/:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/Users/tnabe/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/tnabe/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Program Files/JetBrains/WebStorm 2021.1.2/bin:/mnt/c/Users/tnabe/AppData/Roaming/npm:/mnt/c/Program Files (x86)/Brackets/:/snap/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.18.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://raw.githubusercontent.com/web3-js/WebSocket-Node/ef5ea2f41daf4a2113b80c9223df884b4d56c400/package.json: ETIMEDOUT
+      at Timeout._onTimeout (/usr/share/yarn/lib/cli.js:141550:19)
+      at listOnTimeout (node:internal/timers:559:17)
+      at processTimers (node:internal/timers:502:7)
+
+npm manifest: 
+  {
+    "name": "Web3PortfolioWallet",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "https://github.com/mashharuki/Web3PortfolioWallet.git",
+    "author": "mashharuki",
+    "license": "MIT",
+    "private": true,
+    "workspaces": [
+      "packages/*"
+    ],
+    "scripts": {
+      "start:api": "yarn workspace api start",
+      "test:kms": "yarn workspace api test:kms",
+      "compile:contract": "yarn workspace backend compile",
+      "test:contract": "yarn workspace backend test",
+      "deploy:fuji": "yarn workspace backend deploy:fuji",
+      "deploy:sepolia": "yarn workspace backend deploy:sepolia",
+      "verify:fuji": "yarn workspace backend verify:fuji",
+      "start:frontend": "yarn workspace frontend start",
+      "build:frontend": "yarn workspace frontend build",
+      "test:frontend": "yarn workspace frontend test",
+      "subgraph:codegen": "yarn workspace subgraph codegen",
+      "subgraph:build": "yarn workspace subgraph build",
+      "subgraph:deploy": "yarn workspace subgraph deploy",
+      "convert": "yarn workspace vcScripts convert"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
